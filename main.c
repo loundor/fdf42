@@ -63,6 +63,8 @@ int	main(int argc, char **argv)
 		exit (0);
 	}
 	size = map_test(argv[1]);
+	m.sizex = size[0];
+	m.sizey = size[1];
 	m.matrix = map_parse(argv[1], size);
 	m.id = mlx_init();
 	m.winx = 1204;
@@ -72,9 +74,6 @@ int	main(int argc, char **argv)
 	free(size);
 	return (0);
 }
-
-//	printf("- Size = %d\n", size[0]); //x
-//	printf("- Size = %d\n", size[1]); //y
 
 t_matrix	***map_parse(char *file, int *size)
 {
@@ -143,7 +142,7 @@ void	free_split(char **split, int size)
 int	*argb_to_i(char *hex)
 {
 	int	*argb[4];
-
+	// count size of argb - 2;
 	int argb[0] = ((hex[2]-55)*16 + (hex[3]-55));
 	int argb[1] = ((hex[4]-55)*16 + (hex[5]-55));
 	int argb[2] = ((hex[6]-55)*16 + (hex[7]-55));
