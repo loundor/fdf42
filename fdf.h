@@ -40,6 +40,8 @@ typedef struct s_global
 	int			winx;
 	int			winy;
 	t_matrix	***matrix;
+	int			sizex;
+	int			sizey;
 	int			mousex;
 	int			mousey;
 	int			start;
