@@ -1,9 +1,11 @@
 NAME	= fdf
 CC		= gcc
 FLAGS	= -Wall -Wextra -Werror
-SRCS	= main.c
+SRCS	=	main.c \
+			matrix.c \
+			draw.c
 OBJS	= $(addprefix ./, ${SRCS:.c=.o})
-HEADER	= 
+HEADER	= fdf.h
 MLX		= -Lmlx -lmlx -framework OpenGL -framework AppKit
 RM		= rm -rf
 

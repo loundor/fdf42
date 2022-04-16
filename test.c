@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 11:43:48 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/16 13:39:11 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/16 15:30:32 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,16 @@ void	testdot(t_global *m)
 	mlx_pixel_put(m->id, m->win_id, 800, 250, 100100100);
 	mlx_pixel_put(m->id, m->win_id, 801, 251, 100100100);
 	mlx_pixel_put(m->id, m->win_id, 799, 251, 100100100);
-	draw_line(m, 40, 600, 800, 250);
+	draw_line(m, 0, 0, 1024/2-20, 768/2-20);
+	draw_line(m, 1024, 768, 1024/2+20, 768/2+20);
+	draw_line(m, 1024, 0, 1024/2+20, 768/2-20);
+	draw_line(m, 0, 768, 1024/2-20, 768/2+20);
+
+	draw_line(m, 0, 0, 80, 580);
+	draw_line(m, 1024, 0, 820, 680);
+	draw_line(m, 1024, 768, 940, 20);
+	draw_line(m, 0, 768, 10, 50);
+	draw_line(m, 1024, 768, 200, 680);
 }
 
 void	testmatrix(t_global *m)
