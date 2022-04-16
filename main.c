@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:53:29 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/16 13:14:51 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/16 13:37:20 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,27 +149,25 @@ void		draw_line(t_global *m, int x, int y, int x1, int y1)
 	float	yd;
 	float	p;
 
-	p = 0;
+	p = abs(x1 - x);
+	xd = 2 * p;
+	yd = 2 * abs(y1 - y);
 	mlx_pixel_put(m->id, m->win_id, x, y, 100100100);
 	mlx_pixel_put(m->id, m->win_id, x1, y1, 100100100);
-	while (x < x1 || y < y1)
+	while (x <= x1)
 	{
-		xd = 2 * (y1 - y);
-		yd = xd - (2 * (x1 - x));
-		p += xd - (x1 - x);
-//			printf("x:%d, y:%d - x1:%d y1:%d\nxd: %d, yd:%d, p:%d\n ------- \n", x, y, x1, y1, xd, yd, p);
-		if (p + .5 < 0)
+		mlx_pixel_put(m->id, m->win_id, (int)x, (int)y, 255255);
+		x++;
+		p -= yd;
+		if (p < 0)
 		{
-			write(1, "x\n", 2);
-			x++;
+			y--;
 			p += xd;
 		}
-		else
-		{
-			write(1, "y\n", 2);
-			y++;
-			p += yd;
-		}
-		mlx_pixel_put(m->id, m->win_id, x, y, 100100100);
+//		else
+//		{
+//			y++;
+//			p += yd;
+//		}
 	}
 }

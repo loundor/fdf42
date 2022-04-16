@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 11:43:48 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/16 13:17:01 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/16 13:39:11 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,20 @@ void	testdot(t_global *m)
 
 	x = -1;
 	y = -1;
-	mlx_pixel_put(m->id, m->win_id, 40, 250, 100100100);
-	mlx_pixel_put(m->id, m->win_id, 800, 600, 100100100);
-	mlx_pixel_put(m->id, m->win_id, 39, 250, 100100100);
-	mlx_pixel_put(m->id, m->win_id, 801, 600, 100100100);
+	mlx_pixel_put(m->id, m->win_id, 39, 599, 100100100);
+	mlx_pixel_put(m->id, m->win_id, 40, 600, 100100100);
+	mlx_pixel_put(m->id, m->win_id, 41, 601, 100100100);
+	mlx_pixel_put(m->id, m->win_id, 39, 601, 100100100);
+
 	mlx_pixel_put(m->id, m->win_id, (798-40)/2+40, (598-250)/2+250, 100100100);
 	mlx_pixel_put(m->id, m->win_id, (800-40)/2+40, (600-250)/2+250, 100100100);
 	mlx_pixel_put(m->id, m->win_id, (802-40)/2+40, (602-250)/2+250, 100100100);
-	mlx_pixel_put(m->id, m->win_id, 38, 250, 100100100);
-	mlx_pixel_put(m->id, m->win_id, 802, 600, 100100100);
-	mlx_pixel_put(m->id, m->win_id, 41, 250, 100100100);
-	mlx_pixel_put(m->id, m->win_id, 803, 600, 100100100);
-	draw_line(m, 40, 250, 800, 600);
+
+	mlx_pixel_put(m->id, m->win_id, 799, 249, 100100100);
+	mlx_pixel_put(m->id, m->win_id, 800, 250, 100100100);
+	mlx_pixel_put(m->id, m->win_id, 801, 251, 100100100);
+	mlx_pixel_put(m->id, m->win_id, 799, 251, 100100100);
+	draw_line(m, 40, 600, 800, 250);
 }
 
 void	testmatrix(t_global *m)
