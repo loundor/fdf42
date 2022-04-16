@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:53:29 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/16 13:04:30 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/16 13:14:51 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ int	main(int argc, char **argv)
 	m.zoom = 1;
 	m.matrix = map_parse(argv[1], size);
 	m.id = mlx_init();
-//	testmatrix(&m);
 	m.win_id = mlx_new_window(m.id, m.winx, m.winy, "Fdf42 - By stisera");
+	testmatrix(&m);
 	testdot(&m);
 	mlx_loop(m.id);
 	free(size);
@@ -150,11 +150,10 @@ void		draw_line(t_global *m, int x, int y, int x1, int y1)
 	float	p;
 
 	p = 0;
-	mlx_pixel_put(m->id, m->win_id, x, y, 255);
-	mlx_pixel_put(m->id, m->win_id, x1, y1, 255);
+	mlx_pixel_put(m->id, m->win_id, x, y, 100100100);
+	mlx_pixel_put(m->id, m->win_id, x1, y1, 100100100);
 	while (x < x1 || y < y1)
 	{
-		//p += xd - (x1 - x);
 		xd = 2 * (y1 - y);
 		yd = xd - (2 * (x1 - x));
 		p += xd - (x1 - x);
@@ -171,7 +170,6 @@ void		draw_line(t_global *m, int x, int y, int x1, int y1)
 			y++;
 			p += yd;
 		}
-		mlx_pixel_put(m->id, m->win_id, x, y, 255);
+		mlx_pixel_put(m->id, m->win_id, x, y, 100100100);
 	}
-
 }
