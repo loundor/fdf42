@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:43:48 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/17 19:55:59 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/17 20:12:50 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_draw
 	int	dy1;
 	int	xi;
 	int	yi;
-	int color;
+	int	color;
 }	t_draw;
 typedef struct s_global
 {
@@ -81,7 +81,6 @@ t_matrix	*line_to_matrix(char *line, t_matrix *matrix);
 void		draw_line(t_global *m);
 void		draw_line_b(t_global *m);
 void		draw_line_s(t_global *m);
-
 
 // DEBUG FUNCTION
 void		testmatrix(t_global *m);

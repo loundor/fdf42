@@ -6,13 +6,13 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 15:32:31 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/17 20:07:32 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/17 20:12:25 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./fdf.h"
 
-void		draw_line(t_global *m)
+void	draw_line(t_global *m)
 {
 	m->line->px = abs(m->line->x1 - m->line->x);
 	m->line->py = abs(m->line->y1 - m->line->y);

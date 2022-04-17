@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:53:29 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/17 20:07:32 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/17 20:12:34 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,3 @@ int	main(int argc, char **argv)
 	free(size);
 	return (0);
 }
-
