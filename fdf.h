@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:43:48 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/14 12:46:50 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/17 19:55:59 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,23 @@ typedef struct s_matrix
 	char				color[11];
 }	t_matrix;
 
+// COORDINATE OF X,Y and X1, Y1 must be full!
+typedef struct s_draw
+{
+	int	x;
+	int	y;
+	int	x1;
+	int	y1;
+	int	px;
+	int	py;
+	int	dx;
+	int	dy;
+	int	dx1;
+	int	dy1;
+	int	xi;
+	int	yi;
+	int color;
+}	t_draw;
 typedef struct s_global
 {
 	void		*id;
@@ -37,6 +54,7 @@ typedef struct s_global
 	int			winx;
 	int			winy;
 	t_matrix	***matrix;
+	t_draw		*line;
 	int			sizex;
 	int			sizey;
 	int			mousex;
@@ -60,10 +78,14 @@ char		*i_to_argb(int a, int r, int g, int b);
 t_matrix	*first_line_matrix(char **tab);
 t_matrix	*line_to_matrix(char *line, t_matrix *matrix);
 
-void		draw_line(t_global *m, int x, int y, int x1, int y1);
+void		draw_line(t_global *m);
+void		draw_line_b(t_global *m);
+void		draw_line_s(t_global *m);
+
 
 // DEBUG FUNCTION
 void		testmatrix(t_global *m);
 void		testdot(t_global *m);
+void		draw_line_G(t_global *m);
 
 #endif

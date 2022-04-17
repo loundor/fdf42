@@ -7,6 +7,7 @@ SRCS	=	main.c \
 OBJS	= $(addprefix ./, ${SRCS:.c=.o})
 HEADER	= fdf.h
 MLX		= -Lmlx -lmlx -framework OpenGL -framework AppKit
+UNIX	= -lbsd -lmlx -lXext -lX11
 RM		= rm -rf
 
 .c.o	:

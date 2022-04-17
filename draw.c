@@ -6,65 +6,66 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 15:32:31 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/16 15:35:41 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/17 20:07:32 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "./fdf.h"
 
-void		draw_line(t_global *m, int x, int y, int x1, int y1)
+void		draw_line(t_global *m)
 {
-	int px;
-	int	py;
-	int	dx;
-	int dy;
-	int dx1;
-	int dy1;
-	int i;
-	int xi;
-	int yi;
+	m->line->px = abs(m->line->x1 - m->line->x);
+	m->line->py = abs(m->line->y1 - m->line->y);
+	m->line->dx = 2 * m->line->px;
+	m->line->dy = 2 * m->line->py;
+	m->line->dx1 = m->line->px;
+	m->line->dy1 = m->line->py;
+	m->line->xi = 1;
+	m->line->yi = 1;
+	if (m->line->x > m->line->x1)
+		m->line->xi = -1;
+	if (m->line->y > m->line->y1)
+		m->line->yi = -1;
+	if (m->line->dx1 > m->line->dy1)
+		draw_line_b(m);
+	if (m->line->dx1 < m->line->dy1)
+		draw_line_s(m);
+}
 
-	px = abs(x1 - x);
-	py = abs(y1 - y);
-	dx = 2 * px;
-	dy = 2 * py;
-	dx1 = px;
-	dy1 = py;
+void	draw_line_b(t_global *m)
+{
+	int	i;
+
 	i = 0;
-	xi = 1;
-	yi = 1;
-	if (x > x1)
-		xi = -1;
-	if (y > y1)
-		yi = -1;
-	if (dx1 > dy1)
+	while (i <= m->line->dx1)
 	{
-		while (i <= dx1)
+		mlx_pixel_put(m->id, m->win_id, m->line->x, m->line->y, m->line->color);
+		i++;
+		m->line->x += m->line->xi;
+		m->line->px -= m->line->dy;
+		if (m->line->px < 0)
 		{
-			mlx_pixel_put(m->id, m->win_id, x, y, 255255);
-			i++;
-			x += xi;
-			px -= dy;
-			if (px < 0)
-			{
-				y += yi;
-				px += dx;
-			}
+			m->line->y += m->line->yi;
+			m->line->px += m->line->dx;
 		}
 	}
-	if (dx1 < dy1)
+}
+
+void	draw_line_s(t_global *m)
+{
+	int	i;
+
+	i = 0;
+	while (i <= m->line->dy1)
 	{
-		while (i <= dy1)
+		mlx_pixel_put(m->id, m->win_id, m->line->x, m->line->y, m->line->color);
+		i++;
+		m->line->y += m->line->yi;
+		m->line->py -= m->line->dx;
+		if (m->line->py < 0)
 		{
-			mlx_pixel_put(m->id, m->win_id, x, y, 255);
-			i++;
-			y += yi;
-			py -= dx;
-			if (py < 0)
-			{
-				x += xi;
-				py += dy;
-			}
+			m->line->x += m->line->xi;
+			m->line->py += m->line->dy;
 		}
 	}
 }

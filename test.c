@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 11:43:48 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/16 15:30:32 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/17 20:07:31 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,33 @@
 
 void	testdot(t_global *m)
 {
-	int	x;
-	int	y;
+	m->line->x = 20;
+	m->line->y = 120;
+	m->line->x1 = 490;
+	m->line->y1 = 16;
+	m->line->color = 255255;
+	draw_line(m);
 
-	x = -1;
-	y = -1;
-	mlx_pixel_put(m->id, m->win_id, 39, 599, 100100100);
-	mlx_pixel_put(m->id, m->win_id, 40, 600, 100100100);
-	mlx_pixel_put(m->id, m->win_id, 41, 601, 100100100);
-	mlx_pixel_put(m->id, m->win_id, 39, 601, 100100100);
+	m->line->x = 120;
+	m->line->y = 240;
+	m->line->x1 = 240;
+	m->line->y1 = 0;
+	m->line->color = 150100;
+	draw_line(m);
 
-	mlx_pixel_put(m->id, m->win_id, (798-40)/2+40, (598-250)/2+250, 100100100);
-	mlx_pixel_put(m->id, m->win_id, (800-40)/2+40, (600-250)/2+250, 100100100);
-	mlx_pixel_put(m->id, m->win_id, (802-40)/2+40, (602-250)/2+250, 100100100);
+	m->line->x = 980;
+	m->line->y = 750;
+	m->line->x1 = 200;
+	m->line->y1 = 10;
+	m->line->color = 255255255;
+	draw_line(m);
 
-	mlx_pixel_put(m->id, m->win_id, 799, 249, 100100100);
-	mlx_pixel_put(m->id, m->win_id, 800, 250, 100100100);
-	mlx_pixel_put(m->id, m->win_id, 801, 251, 100100100);
-	mlx_pixel_put(m->id, m->win_id, 799, 251, 100100100);
-	draw_line(m, 0, 0, 1024/2-20, 768/2-20);
-	draw_line(m, 1024, 768, 1024/2+20, 768/2+20);
-	draw_line(m, 1024, 0, 1024/2+20, 768/2-20);
-	draw_line(m, 0, 768, 1024/2-20, 768/2+20);
-
-	draw_line(m, 0, 0, 80, 580);
-	draw_line(m, 1024, 0, 820, 680);
-	draw_line(m, 1024, 768, 940, 20);
-	draw_line(m, 0, 768, 10, 50);
-	draw_line(m, 1024, 768, 200, 680);
+	m->line->x = 500;
+	m->line->y = 0;
+	m->line->x1 = 505;
+	m->line->y1 = 768;
+	m->line->color = 180120213;
+	draw_line(m);
 }
 
 void	testmatrix(t_global *m)
