@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:53:29 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/17 20:12:34 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/18 20:53:01 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	main(int argc, char **argv)
 	m.line = malloc(sizeof(t_draw) * 1);
 	m.id = mlx_init();
 	m.win_id = mlx_new_window(m.id, m.winx, m.winy, "Fdf42 - By stisera");
-	testmatrix(&m);
+	//testmatrix(&m);
 	testdot(&m);
 	mlx_loop(m.id);
 	free(size);
