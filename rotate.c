@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 16:45:47 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/19 17:50:22 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/19 20:21:34 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ void	adjust_z(int *x, int *y, int z, t_global *m)
 
 	xb = *x;
 	yb = *y;
-	*x = (xb - yb) * cos(m->rad);
-	*y = (xb + yb) * sin(m->rad) - z;
+	*x = (xb - yb) * cos(m->radiso);
+	*y = (xb + yb) * sin(m->radiso) - z;
 }

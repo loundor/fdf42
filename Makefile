@@ -3,7 +3,10 @@ CC		= gcc
 FLAGS	= -Wall -Wextra -Werror
 SRCS	=	main.c \
 			matrix.c \
-			draw.c
+			draw.c \
+			hook.c \
+			rotate.c \
+			map.c
 OBJS	= $(addprefix ./, ${SRCS:.c=.o})
 HEADER	= fdf.h
 MLX		= -Lmlx -lmlx -framework OpenGL -framework AppKit

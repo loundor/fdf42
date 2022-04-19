@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:43:48 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/19 17:46:55 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/19 23:31:01 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,36 @@
 # include "./libft/libft.h"
 # include "./libft/get_next_line.h"
 # define BASE16 "0123456789abcfdef"
+# define NAMEAUT "Projet fdf 42 Mulhouse"
+
+// KEYBOARD MLX UNIX DEFINE
+# define UP 119 // w
+# define DOWN 115 // s
+# define LEFT 97 // a
+# define RIGHT 100 // d
+# define PLUS 65 // +
+# define MINUS 45 // -
+# define ESC 65307
+# define SPACE 32
+# define ZOOMM 113 // q
+# define ZOOMP 101 // e
+# define XP 114 // r
+# define XM 102 // f
+# define YP 116 // t
+# define YM 103 // g
+# define ZP 121 // y
+# define ZM 104 // h
+# define ANGLEP 117 // u
+# define ANGLEM 106 // j
+# define ENTER 65293
+// MOUSE MLX UNIX DEFINE
+# define MOUSEL 1
+# define MOUSEM 2
+# define MOUSER 3
+# define MOUSEUP 4
+# define MOUSEDOWN 5
+# define MOUSEPREV 8
+# define MOUSENEXT 9
 
 typedef struct s_matrix
 {
@@ -53,6 +83,8 @@ typedef struct s_global
 {
 	void		*id;
 	void		*win_id;
+	void		*img;
+	void		*info;
 	int			winx;
 	int			winy;
 	t_matrix	***matrix;
@@ -64,8 +96,10 @@ typedef struct s_global
 	int			start;
 	int			zoom;
 	float		rad;
+	float		radiso;
 	int			view;
 	int			scale;
+	int			margin;
 }	t_global;
 
 int			*map_test(char *file);
@@ -80,6 +114,7 @@ char		*i_to_argb(int a, int r, int g, int b);
 t_matrix	*first_line_matrix(char **tab);
 t_matrix	*line_to_matrix(char *line, t_matrix *matrix);
 
+// DRAW FUNCTION
 void		draw_line(t_global *m);
 void		draw_line_b(t_global *m);
 void		draw_line_s(t_global *m);
@@ -89,9 +124,16 @@ void		rotate(int *xy, int *z, t_global *m);
 void		z_rotate(int *x, int *y, t_global *m);
 void		adjust_z(int *x, int *y, int z, t_global *m);
 
+// KEYBOARD AND MOUSE
+int			key_hook(int key, t_global *m);
+void		key_hook2(int key, t_global *m);
+int			mouse_hook(int mouse, int x, int y, t_global *m);
+
 // DEBUG FUNCTION
 void		testmatrix(t_global *m);
 void		testdot(t_global *m);
 void		draw_line_G(t_global *m);
+int			info(t_global *m);
+void		default_param(t_global *m);
 
 #endif

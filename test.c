@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 11:43:48 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/19 17:52:17 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/19 22:43:00 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ void	testdot(t_global *m)
 	while (y < m->sizey)
 	{
 		x = 0;
+		m->matrix[y][x]->y *= m->scale/2;
+		m->matrix[y][x]->x *= m->scale/2;
+		m->matrix[y][x]->z *= m->scale/2;
 		rotate(&m->matrix[y][x]->y, &m->matrix[y][x]->z, m);
 		rotate(&m->matrix[y][x]->x, &m->matrix[y][x]->z, m);
 		z_rotate(&m->matrix[y][x]->x, &m->matrix[y][x]->y, m);
@@ -28,7 +31,10 @@ void	testdot(t_global *m)
 		while (x < m->sizex)
 		{
 			if (x + 1 < m->sizex)
-			{	
+			{
+		m->matrix[y][x+1]->y *= m->scale/2;
+		m->matrix[y][x+1]->x *= m->scale/2;
+		m->matrix[y][x+1]->z *= m->scale/2;
 				if (m->matrix[y][x]->z1 > 0 || m->matrix[y][x+1]->z1 > 0)
 					m->line->color = 255255255;
 				else
@@ -55,19 +61,6 @@ void	testdot(t_global *m)
 		}
 		y++;
 	}
-	// CROSS
-/* 	m->line->x = (m->matrix[0][0]->x * ((m->winx - 300) / m->sizex) + 150) * m->zoom;
-	m->line->y = (m->matrix[0][0]->y * ((m->winy - 100) / m->sizey) + 50) * m->zoom;
-	m->line->x1 = (m->matrix[m->sizey - 1][m->sizex - 1]->x * ((m->winx - 300) / m->sizex) + 150) * m->zoom;
-	m->line->y1 = (m->matrix[m->sizey - 1][m->sizex - 1]->y * ((m->winy - 100) / m->sizey) + 50) * m->zoom;
-	draw_line(m);
-
-	m->line->x = (m->matrix[m->sizey - 1][0]->x * ((m->winx - 300) / m->sizex) + 150) * m->zoom;
-	m->line->y = (m->matrix[m->sizey - 1][0]->y * ((m->winy - 100) / m->sizey) + 50) * m->zoom;
-	m->line->x1 = (m->matrix[0][m->sizex - 1]->x * ((m->winx - 300) / m->sizex) + 150) * m->zoom;
-	m->line->y1 = (m->matrix[0][m->sizex - 1]->y * ((m->winy - 100) / m->sizey) + 50) * m->zoom;
-	draw_line(m); */
-	// END CROSS
 }
 
 void	testmatrix(t_global *m)
