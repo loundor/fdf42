@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 15:33:05 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/16 15:35:40 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/19 17:51:12 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,10 @@ void	put_matrix_line(t_matrix **matrix, int y, int count, char **split)
 	{
 		def = ft_split(split[i], ',');
 		matrix[i] = malloc(sizeof(t_matrix) * 1);
-		matrix[i]->y = y;
-		matrix[i]->x = i;
+		matrix[i]->y = y * 20 + 50; // DEBUG TEST
+		matrix[i]->x = i * 20 + 600; // DEBUG TEST
 		matrix[i]->z = ft_atoi(def[0]);
+		matrix[i]->z1 = ft_atoi(def[0]);
 		colori = 0;
 		if (def[1])
 		{

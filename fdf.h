@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:43:48 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/18 20:34:36 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/19 17:46:55 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_matrix
 	int					x;
 	int					y;
 	int					z;
+	int					z1;
 	char				color[11];
 }	t_matrix;
 
@@ -47,6 +48,7 @@ typedef struct s_draw
 	int	yi;
 	int	color;
 }	t_draw;
+
 typedef struct s_global
 {
 	void		*id;
@@ -60,10 +62,10 @@ typedef struct s_global
 	int			mousex;
 	int			mousey;
 	int			start;
-	float		zoom;
+	int			zoom;
+	float		rad;
 	int			view;
-	float		decalx;
-	float		decaly;
+	int			scale;
 }	t_global;
 
 int			*map_test(char *file);
@@ -81,6 +83,11 @@ t_matrix	*line_to_matrix(char *line, t_matrix *matrix);
 void		draw_line(t_global *m);
 void		draw_line_b(t_global *m);
 void		draw_line_s(t_global *m);
+
+// ROTATION AND ADJUST
+void		rotate(int *xy, int *z, t_global *m);
+void		z_rotate(int *x, int *y, t_global *m);
+void		adjust_z(int *x, int *y, int z, t_global *m);
 
 // DEBUG FUNCTION
 void		testmatrix(t_global *m);
