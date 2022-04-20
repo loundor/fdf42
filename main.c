@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:53:29 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/20 13:26:05 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/20 15:41:16 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,14 @@ int	main(int argc, char **argv)
 	m.matrix = map_parse(argv[1], size);
 	free(size);
 	m.line = malloc(sizeof(t_draw) * 1);
-//	testmatrix(&m);
-//	testdot(&m);
 	//mlx_hook(m.win_id, DestroyNotify, StructureNotifyMask, exit_hook, &m);
-	m.m_sum = matrix_sum(&m); // write the good value in secondary matrix
+	m.m_sum = matrix_sum(&m);
 	matrix_draw(&m);
 	mlx_mouse_hook(m.win_id, mouse_hook, &m);
 	mlx_key_hook(m.win_id, key_hook, &m);
 	mlx_loop_hook(m.id, info, &m);
 	mlx_loop(m.id);
-//	free_all(&m);
+	free_all(&m);
 	return (0);
 }
 
@@ -58,7 +56,8 @@ void	default_param(t_global *m)
 	m->winy = 1024;
 	m->marginx = 200;
 	m->marginy = 100;
-	m->scale = sqrt((pow(m->winx - m->marginx, 2) + pow(m->winy, 2))) / m->sizex;
+	m->scale = sqrt((pow(m->winx - m->marginx, 2)
+				+ pow(m->winy, 2))) / m->sizex;
 	m->radx = M_PI / 6;
 	m->rady = M_PI / 6;
 	m->radz = M_PI / 6;
@@ -76,7 +75,8 @@ void	reset_param(t_global *m)
 {
 	m->marginx = 200;
 	m->marginy = 100;
-	m->scale = sqrt((pow(m->winx - m->marginx, 2) + pow(m->winy, 2))) / m->sizex;
+	m->scale = sqrt((pow(m->winx - m->marginx, 2)
+				+ pow(m->winy, 2))) / m->sizex;
 	m->radx = M_PI / 6;
 	m->rady = M_PI / 6;
 	m->radz = M_PI / 6;
@@ -86,6 +86,7 @@ void	reset_param(t_global *m)
 	m->zzoom = 1;
 	m->errm = 0;
 }
+
 int	info(t_global *m)
 {
 	char	*mx;
@@ -104,7 +105,7 @@ int	info(t_global *m)
 		ft_itoa(m->radx * 180 / M_PI));
 	mlx_string_put(m->id, m->win_id, 1000, 280, 255,
 		ft_itoa(m->rady * 180 / M_PI));
-	mlx_string_put(m->id, m->win_id, 1000, 300, 255, ft_itoa(m->zoom));
+	mlx_string_put(m->id, m->win_id, 1000, 300, 255, ft_itoa(m->zoom * 100));
 	free(mx);
 	free(my);
 	return (0);

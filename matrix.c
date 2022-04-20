@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 15:33:05 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/20 13:39:55 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/20 15:40:23 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ t_matrix	***matrix_sum(t_global *m)
 	return (map);
 }
 
-void		matrix_draw(t_global *m)
+void	matrix_draw(t_global *m)
 {
 	int	x;
 	int	y;
@@ -125,20 +125,111 @@ void		matrix_draw(t_global *m)
 		{
 			if (x < m->sizex - 1)
 			{
-				m->line->x = m->m_sum[y][x]->x + -1 * m->errm;
+				m->line->x = m->m_sum[y][x]->x + -1 * m->errm + m->marginx;
 				m->line->y = m->m_sum[y][x]->y;
-				m->line->x1 = m->m_sum[y][x + 1]->x + -1 * m->errm;
+				m->line->x1 = m->m_sum[y][x + 1]->x + -1 * m->errm + m->marginx;
 				m->line->y1 = m->m_sum[y][x + 1]->y;
+				if (m->matrix[y][x]->color)
+				{
+					if (m->matrix[y][x]->z == 0 && m->matrix[y][x + 1]->z == 0)
+						m->line->color = 255;
+					else
+					{
+						if (m->matrix[y][x]->z < 0)
+							m->line->color = 255255255;
+						else
+							m->line->color = 255255;
+					}
+				}
 				draw_line(m);
 			}
 			if (y < m->sizey - 1)
 			{
-				m->line->x = m->m_sum[y][x]->x + -1 * m->errm;
+				m->line->x = m->m_sum[y][x]->x + -1 * m->errm + m->marginx;
 				m->line->y = m->m_sum[y][x]->y;
-				m->line->x1 = m->m_sum[y + 1][x]->x + -1 * m->errm;
+				m->line->x1 = m->m_sum[y + 1][x]->x + -1 * m->errm + m->marginx;
 				m->line->y1 = m->m_sum[y + 1][x]->y;
+				if (m->matrix[y][x]->color)
+				{
+					if (m->matrix[y][x]->z == 0 && m->matrix[y + 1][x]->z == 0)
+						m->line->color = 255;
+					else
+					{
+						if (m->matrix[y][x]->z < 0)
+							m->line->color = 255255255;
+						else
+							m->line->color = 255255;
+					}
+				}
 				draw_line(m);
 			}
 		}
 	}
+	free_matrix(m);
+}
+
+int	select_color(int z)
+{
+	if (z == 0)
+		return (255255);
+	else if (z == 1)
+		return (255255);
+	else if (z == 2)
+		return (255);
+	else
+		return (128234100);
+}
+
+void	free_matrix(t_global *m)
+{
+	int	x;
+	int	y;
+
+	y = m->sizey;
+	while (--y >= 0)
+	{
+		x = m->sizex;
+		while (--x >= 0)
+			free(m->m_sum[y][x]);
+		free(m->m_sum[y]);
+		y--;
+	}
+	free(m->m_sum);
+}
+
+void	free_all(t_global *m)
+{
+	int	x;
+	int	y;
+
+	y = m->sizey;
+	while (--y >= 0)
+	{
+		x = m->sizex;
+		while (--x >= 0)
+			free(m->matrix[y][x]);
+		free(m->matrix[y]);
+		y--;
+	}
+
+	while (--y >= 0)
+	{
+		x = m->sizex;
+		while (--x >= 0)
+			free(m->matrix[y][x]);
+		free(m->matrix[y]);
+		y--;
+	}
+	free(m->matrix);
+	mlx_destroy_image(m->id, m->img);
+	mlx_destroy_image(m->id, m->info);
+	mlx_destroy_window(m->id, m->win_id);
+	mlx_destroy_display(m->id);
+}
+
+void	refresh_all(t_global *m)
+{
+	mlx_clear_window(m->id, m->win_id);
+	m->m_sum = matrix_sum(m);
+	matrix_draw(m);
 }
