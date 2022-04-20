@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 11:43:48 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/19 22:43:00 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/20 13:34:33 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	testdot(t_global *m)
 		m->matrix[y][x]->y *= m->scale/2;
 		m->matrix[y][x]->x *= m->scale/2;
 		m->matrix[y][x]->z *= m->scale/2;
-		rotate(&m->matrix[y][x]->y, &m->matrix[y][x]->z, m);
-		rotate(&m->matrix[y][x]->x, &m->matrix[y][x]->z, m);
+		x_rotate(&m->matrix[y][x]->y, &m->matrix[y][x]->z, m);
+		y_rotate(&m->matrix[y][x]->x, &m->matrix[y][x]->z, m);
 		z_rotate(&m->matrix[y][x]->x, &m->matrix[y][x]->y, m);
 //		adjust_z(&m->matrix[y][x]->x, &m->matrix[y][x]->y, m->matrix[y][x]->z, m);
 		while (x < m->sizex)
@@ -35,25 +35,25 @@ void	testdot(t_global *m)
 		m->matrix[y][x+1]->y *= m->scale/2;
 		m->matrix[y][x+1]->x *= m->scale/2;
 		m->matrix[y][x+1]->z *= m->scale/2;
-				if (m->matrix[y][x]->z1 > 0 || m->matrix[y][x+1]->z1 > 0)
+				if (m->matrix[y][x]->z > 0 || m->matrix[y][x+1]->z > 0)
 					m->line->color = 255255255;
 				else
 					m->line->color = 255;
-				rotate(&m->matrix[y][x+1]->y, &m->matrix[y][x+1]->z, m);
-				rotate(&m->matrix[y][x+1]->x, &m->matrix[y][x+1]->z, m);
+				x_rotate(&m->matrix[y][x+1]->y, &m->matrix[y][x+1]->z, m);
+				y_rotate(&m->matrix[y][x+1]->x, &m->matrix[y][x+1]->z, m);
 				z_rotate(&m->matrix[y][x+1]->x, &m->matrix[y][x+1]->y, m);
 //				adjust_z(&m->matrix[y][x+1]->x, &m->matrix[y][x+1]->y, m->matrix[y][x+1]->z, m);
-				m->line->x = m->matrix[y][x]->x;
+				m->line->x = m->matrix[y][x]->x + ((m->scale * m->sizex / 2) - (m->marginx / 2));
 				m->line->y = m->matrix[y][x]->y;
-				m->line->x1 = m->matrix[y][x + 1]->x;
+				m->line->x1 = m->matrix[y][x + 1]->x + ((m->scale * m->sizex / 2) - (m->marginx / 2));
 				m->line->y1 = m->matrix[y][x + 1]->y;
 			}
 			draw_line(m);
 			if (y > 0)
 			{
-				m->line->x = m->matrix[y][x]->x;
+				m->line->x = m->matrix[y][x]->x + ((m->scale * m->sizex / 2) - (m->marginx / 2));
 				m->line->y = m->matrix[y][x]->y;
-				m->line->x1 = m->matrix[y - 1][x]->x;
+				m->line->x1 = m->matrix[y - 1][x]->x + ((m->scale * m->sizex / 2) - (m->marginx / 2));
 				m->line->y1 = m->matrix[y - 1][x]->y;
 				draw_line(m);
 			}

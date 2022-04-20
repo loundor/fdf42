@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:43:48 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/19 23:31:01 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/20 13:34:09 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@
 # define XM 102 // f
 # define YP 116 // t
 # define YM 103 // g
-# define ZP 121 // y
-# define ZM 104 // h
+# define ZP 118 // v
+# define ZM 98 // b
+# define ZMP 121 // y
+# define ZMM 104 // h
 # define ANGLEP 117 // u
 # define ANGLEM 106 // j
 # define ENTER 65293
@@ -59,6 +61,7 @@ typedef struct s_matrix
 	int					z;
 	int					z1;
 	char				color[11];
+	//int				color;
 }	t_matrix;
 
 // COORDINATE OF X,Y and X1, Y1 must be full!
@@ -88,18 +91,24 @@ typedef struct s_global
 	int			winx;
 	int			winy;
 	t_matrix	***matrix;
+	t_matrix	***m_sum;
 	t_draw		*line;
 	int			sizex;
 	int			sizey;
 	int			mousex;
 	int			mousey;
 	int			start;
-	int			zoom;
-	float		rad;
+	float		zoom;
+	float		radx;
+	float		rady;
+	float		radz;
 	float		radiso;
 	int			view;
 	int			scale;
-	int			margin;
+	int			marginx;
+	int			marginy;
+	int			errm;
+	int			zzoom;
 }	t_global;
 
 int			*map_test(char *file);
@@ -108,11 +117,16 @@ void		put_matrix_line(t_matrix **matrix, int y, int count, char **split);
 void		free_split(char **split, int size);
 
 // TO CODE
+int			hextoi(char *def);
 //int			*argb_to_i(char *hex);
 char		*i_to_argb(int a, int r, int g, int b);
 // int			*argb_to_i(char *hex);
 t_matrix	*first_line_matrix(char **tab);
 t_matrix	*line_to_matrix(char *line, t_matrix *matrix);
+
+t_matrix	***matrix_sum(t_global *m); // write the good value in secondary matrix
+void		matrix_draw(t_global *m);
+void		reset_param(t_global *m);
 
 // DRAW FUNCTION
 void		draw_line(t_global *m);
@@ -120,7 +134,8 @@ void		draw_line_b(t_global *m);
 void		draw_line_s(t_global *m);
 
 // ROTATION AND ADJUST
-void		rotate(int *xy, int *z, t_global *m);
+void		x_rotate(int *xy, int *z, t_global *m);
+void		y_rotate(int *xy, int *z, t_global *m);
 void		z_rotate(int *x, int *y, t_global *m);
 void		adjust_z(int *x, int *y, int z, t_global *m);
 

@@ -6,22 +6,28 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 16:45:47 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/19 20:21:34 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/20 13:33:23 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./fdf.h"
 
-void	rotate(int *xy, int *z, t_global *m)
+void	x_rotate(int *xy, int *z, t_global *m)
 {
-	*xy = *xy * cos(m->rad) + *z * sin(m->rad);
-	*z = -(*xy) * sin(m->rad) + *z * cos(m->rad);
+	*xy = *xy * cos(m->radx) + *z * sin(m->radx);
+	*z = -(*xy) * sin(m->radx) + *z * cos(m->radx);
+}
+
+void	y_rotate(int *xy, int *z, t_global *m)
+{
+	*xy = *xy * cos(m->rady) + *z * sin(m->rady);
+	*z = -(*xy) * sin(m->rady) + *z * cos(m->rady);
 }
 
 void	z_rotate(int *x, int *y, t_global *m)
 {
-	*x = *x * cos(m->rad) - *y * sin(m->rad);
-	*y = (*x) * sin(m->rad) + *y * cos(m->rad);
+	*x = *x * cos(m->radz) - *y * sin(m->radz);
+	*y = (*x) * sin(m->radz) + *y * cos(m->radz);
 }
 
 void	adjust_z(int *x, int *y, int z, t_global *m)
