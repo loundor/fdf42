@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:53:29 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/20 15:41:16 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/20 16:47:12 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	default_param(t_global *m)
 	m->radiso = M_PI / 6;
 	m->view = 1;
 	m->zoom = 1;
-	m->zzoom = 1;
+	m->zzoom = -100;
 	m->errm = 0;
 	m->win_id = mlx_new_window(m->id, m->winx, m->winy, NAMEAUT);
 	m->img = mlx_new_image(m->id, m->winx, m->winy);
@@ -82,7 +82,7 @@ void	reset_param(t_global *m)
 	m->radz = M_PI / 6;
 	m->radiso = M_PI / 6;
 	m->view = 1;
-	m->zoom = 1;
+	m->zoom = -100;
 	m->zzoom = 1;
 	m->errm = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 23:18:30 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/20 15:37:17 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/20 16:47:16 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ void	key_hook2(int key, t_global *m)
 	if (key == ZM)
 		m->radz -= 0.017;
 	if (key == ZMP)
-		m->zzoom += 1;
+		m->zzoom -= 10;
 	if (key == ZMM)
-		m->zzoom -= 1;
+		m->zzoom += 10;
 	if (key == SPACE)
 		reset_param(m);
 }
