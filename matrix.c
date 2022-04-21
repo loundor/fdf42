@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 15:33:05 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/20 15:40:23 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/21 20:27:36 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,9 @@ void	put_matrix_line(t_matrix **matrix, int y, int count, char **split)
 		matrix[i]->z = ft_atoi(def[0]);
 		colori = -1;
 		if (def[1])
-		{
-		//	matrix[i]->color = hextoi(def[1]);
-			while (def[1][++colori])
-				matrix[i]->color[colori] = def[1][colori];
-		}
-		while (colori <= 10)
-			matrix[i]->color[colori++] = '\0';
+			matrix[i]->color = (int)def[1];
+		else
+			matrix[i]->color = 0x00;
 		free(def);
 	}
 }
@@ -129,7 +125,7 @@ void	matrix_draw(t_global *m)
 				m->line->y = m->m_sum[y][x]->y;
 				m->line->x1 = m->m_sum[y][x + 1]->x + -1 * m->errm + m->marginx;
 				m->line->y1 = m->m_sum[y][x + 1]->y;
-				if (m->matrix[y][x]->color)
+				if (!m->matrix[y][x]->color)
 				{
 					if (m->matrix[y][x]->z == 0 && m->matrix[y][x + 1]->z == 0)
 						m->line->color = 255;
@@ -141,6 +137,8 @@ void	matrix_draw(t_global *m)
 							m->line->color = 255255;
 					}
 				}
+				else
+					m->line->color = m->matrix[y][x]->color;
 				draw_line(m);
 			}
 			if (y < m->sizey - 1)
@@ -149,18 +147,20 @@ void	matrix_draw(t_global *m)
 				m->line->y = m->m_sum[y][x]->y;
 				m->line->x1 = m->m_sum[y + 1][x]->x + -1 * m->errm + m->marginx;
 				m->line->y1 = m->m_sum[y + 1][x]->y;
-				if (m->matrix[y][x]->color)
+				if (!m->matrix[y][x]->color)
 				{
 					if (m->matrix[y][x]->z == 0 && m->matrix[y + 1][x]->z == 0)
 						m->line->color = 255;
 					else
 					{
 						if (m->matrix[y][x]->z < 0)
-							m->line->color = 255255255;
+							m->line->color = 255255;
 						else
 							m->line->color = 255255;
 					}
 				}
+				else
+					m->line->color = m->matrix[y][x]->color;
 				draw_line(m);
 			}
 		}
@@ -211,7 +211,6 @@ void	free_all(t_global *m)
 		free(m->matrix[y]);
 		y--;
 	}
-
 	while (--y >= 0)
 	{
 		x = m->sizex;
@@ -224,12 +223,13 @@ void	free_all(t_global *m)
 	mlx_destroy_image(m->id, m->img);
 	mlx_destroy_image(m->id, m->info);
 	mlx_destroy_window(m->id, m->win_id);
-	mlx_destroy_display(m->id);
+	//mlx_destroy_display(m->id);
 }
 
 void	refresh_all(t_global *m)
 {
 	mlx_clear_window(m->id, m->win_id);
+	mlx_put_image_to_window(m->id, m->win_id, m->img, 0, 0);
 	m->m_sum = matrix_sum(m);
 	matrix_draw(m);
 }

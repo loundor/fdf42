@@ -6,13 +6,13 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:43:48 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/20 15:35:38 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/21 20:11:16 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# include <mlx.h>
+# include "./mlx/mlx.h"
 # include <math.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -23,7 +23,7 @@
 # define BASE16 "0123456789abcfdef"
 # define NAMEAUT "Projet fdf 42 Mulhouse"
 
-// KEYBOARD MLX UNIX DEFINE
+/* // KEYBOARD MLX UNIX DEFINE
 # define UP 119 // w
 # define DOWN 115 // s
 # define LEFT 97 // a
@@ -44,7 +44,31 @@
 # define ZMM 104 // h
 # define ANGLEP 117 // u
 # define ANGLEM 106 // j
-# define ENTER 65293
+# define ENTER 65293 */
+
+// KEYBOARD MLX MACOS DEFINE
+# define UP 13 // w
+# define DOWN 1 // s
+# define LEFT 0 // a
+# define RIGHT 2 // d
+# define PLUS 69 // +
+# define MINUS 78 // -
+# define ESC 53
+# define SPACE 49
+# define ZOOMM 12 // q
+# define ZOOMP 14 // e
+# define XP 15 // r
+# define XM 3 // f
+# define YP 17 // t
+# define YM 5 // g
+# define ZP 9 // v
+# define ZM 11 // b
+# define ZMP 16 // y
+# define ZMM 4 // h
+# define ANGLEP 32 // u
+# define ANGLEM 38 // j
+# define ENTER 36
+
 // MOUSE MLX UNIX DEFINE
 # define MOUSEL 1
 # define MOUSEM 2
@@ -60,8 +84,7 @@ typedef struct s_matrix
 	int					y;
 	int					z;
 	int					z1;
-	char				color[11];
-	//int				color;
+	int					color;
 }	t_matrix;
 
 // COORDINATE OF X,Y and X1, Y1 must be full!
@@ -97,6 +120,9 @@ typedef struct s_global
 	int			sizey;
 	int			mousex;
 	int			mousey;
+	int			lmousex;
+	int			lmousey;
+	int			lmouse;
 	int			start;
 	float		zoom;
 	float		radx;
@@ -145,6 +171,8 @@ void		adjust_z(int *x, int *y, int z, t_global *m);
 int			key_hook(int key, t_global *m);
 void		key_hook2(int key, t_global *m);
 int			mouse_hook(int mouse, int x, int y, t_global *m);
+int			mouse_press(int mouse, int x, int y, t_global *m);
+int			mouse_release(int mouse, int x, int y, t_global *m);
 void		refresh_all(t_global *m);
 
 // DEBUG FUNCTION
