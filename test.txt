@@ -1,1 +1,10 @@
--- 53 --/n-- 12 --/n-- 13 --/n-- 14 --/n-- 15 --/n-- 17 --/n-- 16 --/n-- 0 --/n-- 1 --/n-- 2 --/n-- 3 --/n-- 5 --/n-- 4 --/n-- 9 --/n-- 11 --/n
+	image_set_pixel(mlx->image, (int)p1->x, (int)p1->y, clerp(p1->color,
+				p2->color, percent));
+
+
+void	image_set_pixel(t_image *image, int x, int y, int color)
+{
+	if (x < 0 || x >= WIN_WIDTH || y < 0 || y >= WIN_HEIGHT)
+		return ;
+	*(int *)(image->ptr + ((x + y * WIN_WIDTH) * image->bpp)) = color;
+}
