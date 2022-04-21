@@ -6,13 +6,14 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:43:48 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/21 20:11:16 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/21 21:12:57 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 # include "./mlx/mlx.h"
+// # include <mlx.h>
 # include <math.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -20,7 +21,6 @@
 # include <stdio.h>
 # include "./libft/libft.h"
 # include "./libft/get_next_line.h"
-# define BASE16 "0123456789abcfdef"
 # define NAMEAUT "Projet fdf 42 Mulhouse"
 
 /* // KEYBOARD MLX UNIX DEFINE
@@ -87,7 +87,6 @@ typedef struct s_matrix
 	int					color;
 }	t_matrix;
 
-// COORDINATE OF X,Y and X1, Y1 must be full!
 typedef struct s_draw
 {
 	int	x;
@@ -143,10 +142,6 @@ void		put_matrix_line(t_matrix **matrix, int y, int count, char **split);
 void		free_split(char **split, int size);
 
 // TO CODE
-int			hextoi(char *def);
-//int			*argb_to_i(char *hex);
-char		*i_to_argb(int a, int r, int g, int b);
-// int			*argb_to_i(char *hex);
 t_matrix	*first_line_matrix(char **tab);
 t_matrix	*line_to_matrix(char *line, t_matrix *matrix);
 
@@ -159,7 +154,7 @@ void		draw_line(t_global *m);
 void		draw_line_b(t_global *m);
 void		draw_line_s(t_global *m);
 void		free_matrix(t_global *m);
-int			select_color(int z);
+int			select_color(int z); // TODO
 
 // ROTATION AND ADJUST
 void		x_rotate(int *xy, int *z, t_global *m);

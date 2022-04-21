@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 23:18:30 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/21 20:58:31 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/21 21:13:15 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,16 @@
 
 int	mouse_release(int mouse, int x, int y, t_global *m)
 {
-	printf("-Release %d --\n", mouse);
+//	printf("-Release %d --\n", mouse);
 	if (mouse == 1)
-	{
 			m->lmouse = 0;
-	}
 	refresh_all(m);
 	return (0);
 }
 
 int	mouse_press(int mouse, int x, int y, t_global *m)
 {
-	printf("-Press %d --\n", mouse);
+//	printf("-Press %d --\n", mouse);
 	if (mouse == 1)
 			m->lmouse = 1;
 	return (0);

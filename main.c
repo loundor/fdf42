@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:53:29 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/21 20:57:45 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/21 21:12:38 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,6 @@ int	main(int argc, char **argv)
 	mlx_loop(m.id);
 	free_all(&m);
 	return (0);
-}
-
-int	hextoi(char *def)
-{
-	int	ret;
-
-	ret = 0;
-	// BASE16 to BASE10
-	return (ret);
 }
 
 void	default_param(t_global *m)
