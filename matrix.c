@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 15:33:05 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/22 14:40:24 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/22 16:35:18 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,20 +121,22 @@ void	matrix_draw(t_global *m)
 		{
 			if (x < m->sizex - 1)
 			{
-				m->line->x = (m->m_sum[y][x]->x + -1 * m->errm + m->marginx) / 2;
+				m->line->x = (m->m_sum[y][x]->x
+						+ -1 * m->errm + m->marginx) / 2;
 				m->line->y = (m->m_sum[y][x]->y) / 2;
-				m->line->x1 = (m->m_sum[y][x + 1]->x + -1 * m->errm + m->marginx) / 2;
+				m->line->x1 = (m->m_sum[y][x + 1]->x
+						+ -1 * m->errm + m->marginx) / 2;
 				m->line->y1 = (m->m_sum[y][x + 1]->y) / 2;
 				if (!m->matrix[y][x]->color)
 				{
 					if (m->matrix[y][x]->z == 0 && m->matrix[y][x + 1]->z == 0)
-						m->line->color = 0xFF;
+						m->line->color = 0x0000FF; // Z 0 X
 					else
 					{
 						if (m->matrix[y][x]->z < 0)
-							m->line->color = 0xFFFF00;
+							m->line->color = 0xCCCCCC; // Z<0 X
 						else
-							m->line->color = 0xFF00;
+							m->line->color = 0x00FF00; // Z>0 X
 					}
 				}
 				else
@@ -143,20 +145,22 @@ void	matrix_draw(t_global *m)
 			}
 			if (y < m->sizey - 1)
 			{
-				m->line->x = (m->m_sum[y][x]->x + -1 * m->errm + m->marginx) / 2;
+				m->line->x = (m->m_sum[y][x]->x + -1
+						* m->errm + m->marginx) / 2;
 				m->line->y = (m->m_sum[y][x]->y) / 2;
-				m->line->x1 = (m->m_sum[y + 1][x]->x + -1 * m->errm + m->marginx) / 2;
+				m->line->x1 = (m->m_sum[y + 1][x]->x
+						+ -1 * m->errm + m->marginx) / 2;
 				m->line->y1 = (m->m_sum[y + 1][x]->y) / 2;
 				if (!m->matrix[y][x]->color)
 				{
 					if (m->matrix[y][x]->z == 0 && m->matrix[y + 1][x]->z == 0)
-						m->line->color = 0xFF00;
+						m->line->color = 0x0000FF; // Z=0 Y
 					else
 					{
 						if (m->matrix[y][x]->z < 0)
-							m->line->color = 0xFF;
+							m->line->color = 0xCCCCCC; // Z<0 Y
 						else
-							m->line->color = 0xFF00;
+							m->line->color = 0x00FF00; // Z>0 Z
 					}
 				}
 				else
@@ -235,12 +239,12 @@ int	refresh_all(t_global *m)
 		if (m->radx - (m->lmousey - m->mousey) * 0.002 != m->radx)
 		{
 			m->radx -= (m->lmousey - m->mousey) * 0.002;
-			m->radz -= (m->lmousey - m->mousey) * 0.002;
+		//	m->radz -= (m->lmousex - m->mousex) * 0.002;
 		}
 		if (m->rady - (m->lmousex - m->mousex) * 0.002 != m->rady)
 		{
 			m->rady -= (m->lmousex - m->mousex) * 0.002;
-			//m->radz += (m->lmousey - m->mousey) * 0.002;
+			m->radz -= (m->lmousey - m->mousey) * 0.002;
 		}
 	}
 	if (m->lmouse == MOUSER)
@@ -252,14 +256,8 @@ int	refresh_all(t_global *m)
 		if (m->marginx - (m->lmousex - m->mousex) * 2 != m->marginx)
 			m->marginx += (m->lmousex - m->mousex) * 2;
 	}
-
 	mlx_clear_window(m->id, m->win_id);
-	//mlx_destroy_image(m->id, m->img);
 	ft_memset(m->data, 0x00000000, m->size_img * m->winy);
-	//m->img = mlx_new_image(m->id, m->winx, m->winy);
-	
-	//m->data = mlx_get_data_addr(m->img, &m->bpp,
-	//		&m->size_img, &m->endian);
 	m->m_sum = matrix_sum(m);
 	matrix_draw(m);
 	mlx_put_image_to_window(m->id, m->win_id, m->img, 0, 0);

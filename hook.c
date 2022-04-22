@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 23:18:30 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/22 14:32:25 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/22 16:31:42 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	mouse_release(int mouse, int x, int y, t_global *m)
 
 int	mouse_press(int mouse, int x, int y, t_global *m)
 {
-//	printf("-Press %d --\n", mouse);
 	if (mouse == MOUSEL && m->lmouse == 0)
 			m->lmouse = MOUSEL;
 	if (mouse == MOUSER && m->lmouse == 0)
