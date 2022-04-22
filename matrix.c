@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 15:33:05 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/21 21:12:37 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/22 01:29:15 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void	put_matrix_line(t_matrix **matrix, int y, int count, char **split)
 		matrix[i]->z = ft_atoi(def[0]);
 		colori = -1;
 		if (def[1])
-			matrix[i]->color = (int)def[1];
+			matrix[i]->color = 255255;//(int)def[1];
 		else
-			matrix[i]->color = 0x00;
+			matrix[i]->color = 0;//0x00;
 		free(def);
 	}
 }
@@ -121,10 +121,10 @@ void	matrix_draw(t_global *m)
 		{
 			if (x < m->sizex - 1)
 			{
-				m->line->x = m->m_sum[y][x]->x + -1 * m->errm + m->marginx;
-				m->line->y = m->m_sum[y][x]->y;
-				m->line->x1 = m->m_sum[y][x + 1]->x + -1 * m->errm + m->marginx;
-				m->line->y1 = m->m_sum[y][x + 1]->y;
+				m->line->x = (m->m_sum[y][x]->x + -1 * m->errm + m->marginx)/2;
+				m->line->y = (m->m_sum[y][x]->y)/2;
+				m->line->x1 = (m->m_sum[y][x + 1]->x + -1 * m->errm + m->marginx)/2;
+				m->line->y1 = (m->m_sum[y][x + 1]->y)/2;
 				if (!m->matrix[y][x]->color)
 				{
 					if (m->matrix[y][x]->z == 0 && m->matrix[y][x + 1]->z == 0)
@@ -143,10 +143,10 @@ void	matrix_draw(t_global *m)
 			}
 			if (y < m->sizey - 1)
 			{
-				m->line->x = m->m_sum[y][x]->x + -1 * m->errm + m->marginx;
-				m->line->y = m->m_sum[y][x]->y;
-				m->line->x1 = m->m_sum[y + 1][x]->x + -1 * m->errm + m->marginx;
-				m->line->y1 = m->m_sum[y + 1][x]->y;
+				m->line->x = (m->m_sum[y][x]->x + -1 * m->errm + m->marginx)/2;
+				m->line->y = (m->m_sum[y][x]->y)/2;
+				m->line->x1 = (m->m_sum[y + 1][x]->x + -1 * m->errm + m->marginx)/2;
+				m->line->y1 = (m->m_sum[y + 1][x]->y)/2;
 				if (!m->matrix[y][x]->color)
 				{
 					if (m->matrix[y][x]->z == 0 && m->matrix[y + 1][x]->z == 0)
@@ -162,6 +162,7 @@ void	matrix_draw(t_global *m)
 				else
 					m->line->color = m->matrix[y][x]->color;
 				draw_line(m);
+
 			}
 		}
 	}
@@ -229,7 +230,11 @@ void	free_all(t_global *m)
 void	refresh_all(t_global *m)
 {
 	mlx_clear_window(m->id, m->win_id);
-	mlx_put_image_to_window(m->id, m->win_id, m->img, 0, 0);
+//	mlx_destroy_image(m->id, m->img);
+//	m->img = mlx_new_image(m->id, m->winx, m->winy);
+//	m->data = mlx_get_data_addr(m->img, &m->bpp,
+//			&m->winx, &m->endian);
 	m->m_sum = matrix_sum(m);
 	matrix_draw(m);
+	//mlx_put_image_to_window(m->id, m->win_id, m->img, 0, 0);
 }

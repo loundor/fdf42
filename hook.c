@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 23:18:30 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/21 21:13:15 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/21 22:04:12 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	mouse_hook(int mouse, int x, int y, t_global *m)
 	if (mouse == 1 && m->lmouse == 0)
 	{
 		m->lmouse = 1;
-		mlx_mouse_get_pos(m->win_id, &m->lmousex, &m->lmousey);
+		//mlx_mouse_get_pos(m->win_id, &m->lmousex, &m->lmousey);
+		mlx_mouse_get_pos(m->id, m->win_id, &m->lmousex, &m->lmousey);
 	}
 	refresh_all(m);
 	return (0);

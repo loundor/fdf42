@@ -6,5 +6,5 @@ void	image_set_pixel(t_image *image, int x, int y, int color)
 {
 	if (x < 0 || x >= WIN_WIDTH || y < 0 || y >= WIN_HEIGHT)
 		return ;
-	*(int *)(image->ptr + ((x + y * WIN_WIDTH) * image->bpp)) = color;
+	*(int *)(m->img->ptr + ((x + y * m->winx) * 4)) = m->matrix[y][x]->color;
 }

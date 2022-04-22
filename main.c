@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:53:29 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/21 21:12:38 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/22 08:35:28 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int argc, char **argv)
 	matrix_draw(&m);
 	mlx_mouse_hook(m.win_id, mouse_hook, &m);
 	mlx_key_hook(m.win_id, key_hook, &m);
-	//mlx_hook(m.win_id, 4, 1L << 2, mouse_press, &m);
+	mlx_hook(m.win_id, 4, 1L << 2, mouse_press, &m);
 	mlx_hook(m.win_id, 5, 1L << 3, mouse_release, &m);
 	mlx_loop_hook(m.id, info, &m);
 	mlx_loop(m.id);
@@ -64,6 +64,8 @@ void	default_param(t_global *m)
 	m->errm = 0;
 	m->win_id = mlx_new_window(m->id, m->winx, m->winy, NAMEAUT);
 	m->img = mlx_new_image(m->id, m->winx, m->winy);
+	m->data = mlx_get_data_addr(m->img, &m->bpp,
+			&m->winx, &m->endian);
 	m->info = mlx_new_image(m->id, 200, 600);
 }
 
@@ -90,7 +92,8 @@ int	info(t_global *m)
 
 	mlx_destroy_image(m->id, m->info);
 	m->info = mlx_new_image(m->id, 200, 600);
-	mlx_mouse_get_pos(m->win_id, &m->mousex, &m->mousey);
+	//mlx_mouse_get_pos(m->win_id, &m->mousex, &m->mousey);
+	mlx_mouse_get_pos(m->id, m->win_id, &m->mousex, &m->mousey);
 	mlx_put_image_to_window(m->id, m->win_id, m->info, 980, 150);
 	mlx_string_put(m->id, m->win_id, 1000, 200, 255255, ft_itoa(m->mousex));
 	mlx_string_put(m->id, m->win_id, 1000, 220, 255, ft_itoa(m->mousey));
@@ -111,7 +114,8 @@ int	info(t_global *m)
 			m->rady += (m->lmousex - m->mousex) * 0.0001;
 		x = m->radx;
 		y = m->rady;
-		mlx_mouse_get_pos(m->win_id, &m->lmousex, &m->lmousey);
+		//mlx_mouse_get_pos(m->win_id, &m->lmousex, &m->lmousey);
+		mlx_mouse_get_pos(m->id, m->win_id, &m->lmousex, &m->lmousey);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 15:32:31 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/21 21:14:44 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/22 01:30:29 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,18 @@ void	draw_line(t_global *m)
 void	draw_line_b(t_global *m)
 {
 	int	i;
+/* 	char *pix; */
 
 	i = 0;
 	while (i <= m->line->dx1)
 	{
+		if (m->line->x > 0 && m->line->x <= m->winx
+				&& m->line->y > 0 && m->line->y <= m->winy)
+/* 		{
+			printf("-%d-", (m->line->x + m->line->y) * (m->bpp/8));
+			pix = m->data + ((m->line->x + (m->line->y * m->winx)) * (m->bpp/8));
+			*(int *)pix = m->line->color;
+		} */
 		mlx_pixel_put(m->id, m->win_id, m->line->x, m->line->y, m->line->color);
 		i++;
 		m->line->x += m->line->xi;
@@ -54,10 +62,17 @@ void	draw_line_b(t_global *m)
 void	draw_line_s(t_global *m)
 {
 	int	i;
+/* char *pix; */
 
 	i = 0;
 	while (i <= m->line->dy1)
 	{
+/* 		if (m->line->x > 0 && m->line->x <= m->winx && m->line->y > 0 && m->line->y <= m->winy)
+		{
+			pix = m->data + ((m->line->x * (m->line->y * m->winx)) * (m->bpp/8));
+			*(int *)pix = m->line->color;
+		} */
+			//*(int *)(m->data + ((m->line->x + m->line->y * m->winx) * m->bpp)) = m->line->color;
 		mlx_pixel_put(m->id, m->win_id, m->line->x, m->line->y, m->line->color);
 		i++;
 		m->line->y += m->line->yi;
