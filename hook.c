@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 23:18:30 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/21 22:04:12 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/22 14:32:25 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,32 @@
 int	mouse_release(int mouse, int x, int y, t_global *m)
 {
 //	printf("-Release %d --\n", mouse);
-	if (mouse == 1)
+	if (mouse == MOUSEL)
 			m->lmouse = 0;
-	refresh_all(m);
+	if (mouse == MOUSER)
+			m->lmouse = 0;
+	//refresh_all(m);
 	return (0);
 }
 
 int	mouse_press(int mouse, int x, int y, t_global *m)
 {
 //	printf("-Press %d --\n", mouse);
-	if (mouse == 1)
-			m->lmouse = 1;
+	if (mouse == MOUSEL && m->lmouse == 0)
+			m->lmouse = MOUSEL;
+	if (mouse == MOUSER && m->lmouse == 0)
+			m->lmouse = MOUSER;
+	if (mouse == MOUSEUP && m->zoom < 2)
+		m->zoom += 0.01;
+	if (mouse == MOUSEDOWN && m->zoom > 0.01)
+		m->zoom -= 0.01;
+	refresh_all(m);
 	return (0);
 }
 
 int	mouse_hook(int mouse, int x, int y, t_global *m)
 {
-	if (mouse == MOUSEUP && m->zoom < 2)
-		m->zoom += 0.01;
-	if (mouse == MOUSEDOWN && m->zoom > 0.01)
-		m->zoom -= 0.01;
-	if (mouse == 1 && m->lmouse == 0)
-	{
-		m->lmouse = 1;
-		//mlx_mouse_get_pos(m->win_id, &m->lmousex, &m->lmousey);
-		mlx_mouse_get_pos(m->id, m->win_id, &m->lmousex, &m->lmousey);
-	}
+
 	refresh_all(m);
 	return (0);
 }

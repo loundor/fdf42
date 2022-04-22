@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:43:48 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/21 23:34:18 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/22 14:35:06 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define NAMEAUT "Projet fdf 42 Mulhouse"
 
 // KEYBOARD MLX UNIX DEFINE
-# define UP 119 // w
+/* # define UP 119 // w
 # define DOWN 115 // s
 # define LEFT 97 // a
 # define RIGHT 100 // d
@@ -44,9 +44,9 @@
 # define ZMM 104 // h
 # define ANGLEP 117 // u
 # define ANGLEM 106 // j
-# define ENTER 65293
+# define ENTER 65293 */
 
-/* // KEYBOARD MLX MACOS DEFINE
+// KEYBOARD MLX MACOS DEFINE
 # define UP 13 // w
 # define DOWN 1 // s
 # define LEFT 0 // a
@@ -67,12 +67,12 @@
 # define ZMM 4 // h
 # define ANGLEP 32 // u
 # define ANGLEM 38 // j
-# define ENTER 36 */
+# define ENTER 36
 
 // MOUSE MLX UNIX DEFINE
 # define MOUSEL 1
-# define MOUSEM 2
-# define MOUSER 3
+# define MOUSER 2
+# define MOUSEM 3
 # define MOUSEUP 4
 # define MOUSEDOWN 5
 # define MOUSEPREV 8
@@ -112,6 +112,7 @@ typedef struct s_global
 	char		*data;
 	int			bpp;
 	int			endian;
+	int			size_img;
 	void		*info;
 	int			winx;
 	int			winy;
@@ -171,7 +172,7 @@ void		key_hook2(int key, t_global *m);
 int			mouse_hook(int mouse, int x, int y, t_global *m);
 int			mouse_press(int mouse, int x, int y, t_global *m);
 int			mouse_release(int mouse, int x, int y, t_global *m);
-void		refresh_all(t_global *m);
+int			refresh_all(t_global *m);
 
 // DEBUG FUNCTION
 void		testmatrix(t_global *m);
