@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 23:18:30 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/24 22:57:49 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/25 23:16:14 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 int	mouse_release(int mouse, int x, int y, t_global *m)
 {
-//	printf("-Release %d --\n", mouse);
 	if (mouse == MOUSEL)
 			m->lmouse = 0;
 	if (mouse == MOUSER)
 			m->lmouse = 0;
-	//refresh_all(m);
 	return (0);
 }
 

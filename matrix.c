@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 15:33:05 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/25 18:05:06 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/25 23:10:34 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	put_matrix_line(t_matrix **matrix, int y, int count, char **split)
 		matrix[i]->z = ft_atoi(def[0]);
 		if (def[1] != NULL)
 			convert_htoi(def[1] + 2, matrix[i]->color);
-		// else
-			//matrix[i]->color = color_by_z(matrix[i]->z);
+		 else
+			color_by_z(matrix[i]->z, matrix[i]->color);
 		free(def);
 	}
 }
@@ -74,44 +74,64 @@ void	convert_htoi(char *hex, unsigned char *color)
 {
 	int	count;
 	int	rgba;
+	int	i;
 
 	count = -1;
-	while (++count < (int)ft_strlen(hex))
+	i = 3;
+	while (++count < ft_strlen(hex))
 	{
 		rgba = 0;
-		rgba = ft_htod(hex[count++]);
+		rgba += ft_htod(hex[count++]);
 		rgba = rgba * 16 + ft_htod(hex[count]);
-		color[count / 2] = (char)rgba;
+		color[i--] = rgba;
 	}
 }
 
-/* unsigned char	*color_by_z(int z)
+void	color_by_z(int z, unsigned char *color)
 {
-	unsigned char	color[4];
-
 	if (z == 0)
 	{
+		color[0] = 0;
+		color[1] = 255;
+		color[2] = 0;
+		color[3] = 0;
+	}
+	else if (z > 150)
+	{
 		color[0] = 255;
-		color[1] = 0;
-		color[2] = 255;
-		color[3] = 255;
+		color[1] = 218;
+		color[2] = 224;
+		color[3] = 230;
+	}
+	else if (z > 60)
+	{
+		color[0] = 255;
+		color[1] = 42;
+		color[2] = 98;
+		color[3] = 150;
+	}
+	else if (z > 20)
+	{
+		color[0] = 255;
+		color[1] = 80;
+		color[2] = 68;
+		color[3] = 21;
 	}
 	else if (z > 0)
 	{
 		color[0] = 255;
 		color[1] = 0;
-		color[2] = 0;
-		color[3] = 255;
+		color[2] = 255;
+		color[3] = 0;
 	}
 	else
 	{
 		color[0] = 255;
-		color[1] = 0;
-		color[2] = 255;
-		color[3] = 255;
+		color[1] = 110;
+		color[2] = 26;
+		color[3] = 11;
 	}
-	return (color);
-} */
+}
 
 void	free_split(char **split, int size)
 {
@@ -178,20 +198,7 @@ void	matrix_draw(t_global *m)
 				m->line->x1 = (m->m_sum[y][x + 1]->x
 						+ -1 * m->errm + m->marginx) / 2;
 				m->line->y1 = (m->m_sum[y][x + 1]->y) / 2;
-/* 				if (m->matrix[y][x]->color == 0)
-				{
-					if (m->matrix[y][x]->z == 0 && m->matrix[y][x + 1]->z == 0)
-						m->line->color = 0x0000FF; // Z 0 X
-					else
-					{
-						if (m->matrix[y][x]->z < 0)
-							m->line->color = 0xCCCCCC; // Z<0 X
-						else
-							m->line->color = 0x00FF00; // Z>0 X
-					}
-				}
-				else */
-					m->line->color = m->matrix[y][x]->color;
+				m->line->color = m->matrix[y][x]->color;
 				draw_line(m);
 			}
 			if (y < m->sizey - 1)
@@ -202,20 +209,7 @@ void	matrix_draw(t_global *m)
 				m->line->x1 = (m->m_sum[y + 1][x]->x
 						+ -1 * m->errm + m->marginx) / 2;
 				m->line->y1 = (m->m_sum[y + 1][x]->y) / 2;
-/* 				if (m->matrix[y][x]->color == 0)
-				{
-					if (m->matrix[y][x]->z == 0 && m->matrix[y + 1][x]->z == 0)
-						m->line->color = 0x0000FF; // Z=0 Y
-					else
-					{
-						if (m->matrix[y][x]->z < 0)
-							m->line->color = 0xCCCCCC; // Z<0 Y
-						else
-							m->line->color = 0x00FF00; // Z>0 Z
-					}
-				}
-				else */
-					m->line->color = m->matrix[y][x]->color;
+				m->line->color = m->matrix[y][x]->color;
 				draw_line(m);
 			}
 		}

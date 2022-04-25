@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:53:29 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/24 22:56:34 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/25 23:12:52 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ int	main(int argc, char **argv)
 void	default_param(t_global *m)
 {
 	m->id = mlx_init();
-	m->winx = 1900;
-	m->winy = 1024;
-	m->marginx = 0;
+	m->winx = 1024;
+	m->winy = 768;
+	m->marginx = 200;
 	m->marginy = 100;
-	m->scale = sqrt((pow(m->winx - m->marginx, 2)
+	m->scale = sqrt((pow(m->winx, 2)
 				+ pow(m->winy, 2))) / m->sizex;
 	m->radx = M_PI / 6;
 	m->rady = M_PI / 6;
@@ -61,7 +61,7 @@ void	default_param(t_global *m)
 	m->lmousey = 0;
 	m->view = 1;
 	m->zoom = 1;
-	m->zzoom = -1;
+	m->zzoom = 0 - m->scale;
 	m->errm = 0;
 	m->win_id = mlx_new_window(m->id, m->winx, m->winy, NAMEAUT);
 	m->img = mlx_new_image(m->id, m->winx, m->winy);
@@ -82,7 +82,7 @@ void	reset_param(t_global *m)
 	m->radiso = M_PI / 6;
 	m->view = 1;
 	m->zoom = 1;
-	m->zzoom = -50;
+	m->zzoom = -5;
 	m->errm = 0;
 }
 

@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:43:48 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/25 17:50:59 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/25 23:15:39 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,14 +146,10 @@ void		put_matrix_line(t_matrix **matrix, int y,
 				int count, char **split);
 void		free_split(char **split, int size);
 
-// TO CODE
-t_matrix	*first_line_matrix(char **tab);
-t_matrix	*line_to_matrix(char *line, t_matrix *matrix);
-
 t_matrix	***matrix_sum(t_global *m);
 void		matrix_draw(t_global *m);
 void		reset_param(t_global *m);
-char		*color_by_z(int z);
+void		color_by_z(int z, unsigned char *color);
 int			ft_htod(char h);
 void		convert_htoi(char *hex, unsigned char *color);
 
@@ -162,7 +158,6 @@ void		draw_line(t_global *m);
 void		draw_line_b(t_global *m);
 void		draw_line_s(t_global *m);
 void		free_matrix(t_global *m);
-int			*select_color(int z); // TODO
 
 // ROTATION AND ADJUST
 void		x_rotate(int *xy, int *z, t_global *m);
@@ -179,11 +174,7 @@ int			mouse_release(int mouse, int x, int y, t_global *m);
 int			refresh_all(t_global *m);
 
 // DEBUG FUNCTION
-void		testmatrix(t_global *m);
-void		testdot(t_global *m);
-void		draw_line_G(t_global *m);
 int			info(t_global *m);
 void		default_param(t_global *m);
-
 void		free_all(t_global *m);
 #endif
