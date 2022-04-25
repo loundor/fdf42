@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 15:32:31 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/22 14:34:17 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/25 17:45:31 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,18 @@ void	draw_line(t_global *m)
 void	draw_line_b(t_global *m)
 {
 	int	i;
-	char	*pix;
 
 	i = 0;
 	while (i <= m->line->dx1)
 	{
 		if (m->line->x > 0 && m->line->x <= m->winx
-				&& m->line->y > 0 && m->line->y <= m->winy)
-		{
-			pix = m->data + ((m->line->y * m->size_img)) + m->line->x * (m->bpp/8);
-			*(int *)pix = m->line->color;
-		}
-		//mlx_pixel_put(m->id, m->win_id, m->line->x, m->line->y, m->line->color);
+			&& m->line->y > 0 && m->line->y <= m->winy)
+			{
+			m->data[((m->line->y * m->size_img)) + m->line->x * (m->bpp / 8)] = m->line->color[3];
+			m->data[((m->line->y * m->size_img)) + m->line->x * (m->bpp / 8) + 1] = m->line->color[2];
+			m->data[((m->line->y * m->size_img)) + m->line->x * (m->bpp / 8) + 2] = m->line->color[1];
+			m->data[((m->line->y * m->size_img)) + m->line->x * (m->bpp / 8) + 3] = m->line->color[0];
+			}
 		i++;
 		m->line->x += m->line->xi;
 		m->line->px -= m->line->dy;
@@ -61,18 +61,20 @@ void	draw_line_b(t_global *m)
 void	draw_line_s(t_global *m)
 {
 	int	i;
-char *pix;
 
 	i = 0;
 	while (i <= m->line->dy1)
 	{
-		if (m->line->x > 0 && m->line->x <= m->winx && m->line->y > 0 && m->line->y <= m->winy)
-		{
-			pix = m->data+ ((m->line->y * m->size_img)) + m->line->x * (m->bpp/8);
-			*(int *)pix = m->line->color;
-		}
-			//*(int *)(m->data + ((m->line->x + m->line->y * m->winx) * m->bpp)) = m->line->color;
-		//mlx_pixel_put(m->id, m->win_id, m->line->x, m->line->y, m->line->color);
+		if (m->line->x > 0 && m->line->x <= m->winx
+			&& m->line->y > 0 && m->line->y <= m->winy)
+			{
+			m->data[((m->line->y * m->size_img)) + m->line->x * (m->bpp / 8)] = m->line->color[3];
+			m->data[((m->line->y * m->size_img)) + m->line->x * (m->bpp / 8) + 1] = m->line->color[2];
+			m->data[((m->line->y * m->size_img)) + m->line->x * (m->bpp / 8) + 2] = m->line->color[1];
+			m->data[((m->line->y * m->size_img)) + m->line->x * (m->bpp / 8) + 3] = m->line->color[0];
+//			m->data[((m->line->y * m->size_img)) + m->line->x
+//				* (m->bpp / 8)] = (char)m->line->color;
+			}
 		i++;
 		m->line->y += m->line->yi;
 		m->line->py -= m->line->dx;

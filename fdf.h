@@ -6,13 +6,13 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:43:48 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/22 16:31:55 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/25 17:50:59 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-// # include "./mlx/mlx.h"
+//# include "./mlx/mlx.h"
 # include <mlx.h>
 # include <math.h>
 # include <unistd.h>
@@ -24,7 +24,7 @@
 # define NAMEAUT "Projet fdf 42 Mulhouse"
 
 // KEYBOARD MLX UNIX DEFINE
-/* # define UP 119 // w
+# define UP 119 // w
 # define DOWN 115 // s
 # define LEFT 97 // a
 # define RIGHT 100 // d
@@ -44,10 +44,10 @@
 # define ZMM 104 // h
 # define ANGLEP 117 // u
 # define ANGLEM 106 // j
-# define ENTER 65293 */
+# define ENTER 65293
 
 // KEYBOARD MLX MACOS DEFINE
-# define UP 13 // w
+/* # define UP 13 // w
 # define DOWN 1 // s
 # define LEFT 0 // a
 # define RIGHT 2 // d
@@ -67,7 +67,7 @@
 # define ZMM 4 // h
 # define ANGLEP 32 // u
 # define ANGLEM 38 // j
-# define ENTER 36
+# define ENTER 36 */
 
 // MOUSE MLX UNIX DEFINE
 # define MOUSEL 1
@@ -80,28 +80,28 @@
 
 typedef struct s_matrix
 {
-	int					x;
-	int					y;
-	int					z;
-	int					z1;
-	int					color;
+	int				x;
+	int				y;
+	int				z;
+	int				z1;
+	unsigned char	color[4];
 }	t_matrix;
 
 typedef struct s_draw
 {
-	int	x;
-	int	y;
-	int	x1;
-	int	y1;
-	int	px;
-	int	py;
-	int	dx;
-	int	dy;
-	int	dx1;
-	int	dy1;
-	int	xi;
-	int	yi;
-	int	color;
+	int				x;
+	int				y;
+	int				x1;
+	int				y1;
+	int				px;
+	int				py;
+	int				dx;
+	int				dy;
+	int				dx1;
+	int				dy1;
+	int				xi;
+	int				yi;
+	unsigned char	*color;
 }	t_draw;
 
 typedef struct s_global
@@ -142,7 +142,8 @@ typedef struct s_global
 
 int			*map_test(char *file);
 t_matrix	***map_parse(char *file, int *size);
-void		put_matrix_line(t_matrix **matrix, int y, int count, char **split);
+void		put_matrix_line(t_matrix **matrix, int y,
+				int count, char **split);
 void		free_split(char **split, int size);
 
 // TO CODE
@@ -152,13 +153,16 @@ t_matrix	*line_to_matrix(char *line, t_matrix *matrix);
 t_matrix	***matrix_sum(t_global *m);
 void		matrix_draw(t_global *m);
 void		reset_param(t_global *m);
+char		*color_by_z(int z);
+int			ft_htod(char h);
+void		convert_htoi(char *hex, unsigned char *color);
 
 // DRAW FUNCTION
 void		draw_line(t_global *m);
 void		draw_line_b(t_global *m);
 void		draw_line_s(t_global *m);
 void		free_matrix(t_global *m);
-int			select_color(int z); // TODO
+int			*select_color(int z); // TODO
 
 // ROTATION AND ADJUST
 void		x_rotate(int *xy, int *z, t_global *m);

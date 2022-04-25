@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:53:29 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/22 14:34:18 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/24 22:56:34 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int argc, char **argv)
 void	default_param(t_global *m)
 {
 	m->id = mlx_init();
-	m->winx = 1280;
+	m->winx = 1900;
 	m->winy = 1024;
 	m->marginx = 0;
 	m->marginy = 100;
@@ -88,13 +88,10 @@ void	reset_param(t_global *m)
 
 int	info(t_global *m)
 {
-	static int	x;
-	static int	y;
-
 	mlx_destroy_image(m->id, m->info);
 	m->info = mlx_new_image(m->id, 200, 600);
-	mlx_mouse_get_pos(m->win_id, &m->mousex, &m->mousey); // OSX
-	//mlx_mouse_get_pos(m->id, m->win_id, &m->mousex, &m->mousey); // UNIX
+	//mlx_mouse_get_pos(m->win_id, &m->mousex, &m->mousey); // OSX
+	mlx_mouse_get_pos(m->id, m->win_id, &m->mousex, &m->mousey); // UNIX
 	mlx_put_image_to_window(m->id, m->win_id, m->info, 980, 150);
 	mlx_string_put(m->id, m->win_id, 1000, 200, 255255, ft_itoa(m->mousex));
 	mlx_string_put(m->id, m->win_id, 1000, 220, 255, ft_itoa(m->mousey));

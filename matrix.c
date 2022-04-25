@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 15:33:05 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/22 16:35:18 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/25 18:05:06 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	put_matrix_line(t_matrix **matrix, int y, int count, char **split)
 {
 	int		i;
 	char	**def;
-	int		colori;
 
 	i = -1;
 	while (++i < count)
@@ -53,14 +52,66 @@ void	put_matrix_line(t_matrix **matrix, int y, int count, char **split)
 		matrix[i]->y = y;
 		matrix[i]->x = i;
 		matrix[i]->z = ft_atoi(def[0]);
-		colori = -1;
-		if (def[1])
-			matrix[i]->color = (int)def[1];
-		else
-			matrix[i]->color = 0x00;
+		if (def[1] != NULL)
+			convert_htoi(def[1] + 2, matrix[i]->color);
+		// else
+			//matrix[i]->color = color_by_z(matrix[i]->z);
 		free(def);
 	}
 }
+
+int	ft_htod(char h)
+{
+	h = ft_toupper(h);
+	if (h >= '0' && h <= '9')
+		return (h - 48);
+	if (h >= 'A' && h <= 'F')
+		return (h - 55);
+	return (-1);
+}
+
+void	convert_htoi(char *hex, unsigned char *color)
+{
+	int	count;
+	int	rgba;
+
+	count = -1;
+	while (++count < (int)ft_strlen(hex))
+	{
+		rgba = 0;
+		rgba = ft_htod(hex[count++]);
+		rgba = rgba * 16 + ft_htod(hex[count]);
+		color[count / 2] = (char)rgba;
+	}
+}
+
+/* unsigned char	*color_by_z(int z)
+{
+	unsigned char	color[4];
+
+	if (z == 0)
+	{
+		color[0] = 255;
+		color[1] = 0;
+		color[2] = 255;
+		color[3] = 255;
+	}
+	else if (z > 0)
+	{
+		color[0] = 255;
+		color[1] = 0;
+		color[2] = 0;
+		color[3] = 255;
+	}
+	else
+	{
+		color[0] = 255;
+		color[1] = 0;
+		color[2] = 255;
+		color[3] = 255;
+	}
+	return (color);
+} */
 
 void	free_split(char **split, int size)
 {
@@ -127,7 +178,7 @@ void	matrix_draw(t_global *m)
 				m->line->x1 = (m->m_sum[y][x + 1]->x
 						+ -1 * m->errm + m->marginx) / 2;
 				m->line->y1 = (m->m_sum[y][x + 1]->y) / 2;
-				if (!m->matrix[y][x]->color)
+/* 				if (m->matrix[y][x]->color == 0)
 				{
 					if (m->matrix[y][x]->z == 0 && m->matrix[y][x + 1]->z == 0)
 						m->line->color = 0x0000FF; // Z 0 X
@@ -139,7 +190,7 @@ void	matrix_draw(t_global *m)
 							m->line->color = 0x00FF00; // Z>0 X
 					}
 				}
-				else
+				else */
 					m->line->color = m->matrix[y][x]->color;
 				draw_line(m);
 			}
@@ -151,7 +202,7 @@ void	matrix_draw(t_global *m)
 				m->line->x1 = (m->m_sum[y + 1][x]->x
 						+ -1 * m->errm + m->marginx) / 2;
 				m->line->y1 = (m->m_sum[y + 1][x]->y) / 2;
-				if (!m->matrix[y][x]->color)
+/* 				if (m->matrix[y][x]->color == 0)
 				{
 					if (m->matrix[y][x]->z == 0 && m->matrix[y + 1][x]->z == 0)
 						m->line->color = 0x0000FF; // Z=0 Y
@@ -163,25 +214,13 @@ void	matrix_draw(t_global *m)
 							m->line->color = 0x00FF00; // Z>0 Z
 					}
 				}
-				else
+				else */
 					m->line->color = m->matrix[y][x]->color;
 				draw_line(m);
 			}
 		}
 	}
 	free_matrix(m);
-}
-
-int	select_color(int z)
-{
-	if (z == 0)
-		return (255255);
-	else if (z == 1)
-		return (255255);
-	else if (z == 2)
-		return (255);
-	else
-		return (128234100);
 }
 
 void	free_matrix(t_global *m)
@@ -234,27 +273,27 @@ int	refresh_all(t_global *m)
 {
 	if (m->lmouse == MOUSEL)
 	{
-		mlx_mouse_get_pos(m->win_id, &m->lmousex, &m->lmousey);
-		//mlx_mouse_get_pos(m->id, m->win_id, &m->lmousex, &m->lmousey);
 		if (m->radx - (m->lmousey - m->mousey) * 0.002 != m->radx)
 		{
 			m->radx -= (m->lmousey - m->mousey) * 0.002;
-		//	m->radz -= (m->lmousex - m->mousex) * 0.002;
+			//m->radz -= (m->lmousex - m->mousex) * 0.002;
 		}
 		if (m->rady - (m->lmousex - m->mousex) * 0.002 != m->rady)
 		{
 			m->rady -= (m->lmousex - m->mousex) * 0.002;
-			m->radz -= (m->lmousey - m->mousey) * 0.002;
+			//m->radz -= (m->lmousey - m->mousey) * 0.002;
 		}
+		//mlx_mouse_get_pos(m->win_id, &m->lmousex, &m->lmousey);
+		mlx_mouse_get_pos(m->id, m->win_id, &m->lmousex, &m->lmousey);
 	}
 	if (m->lmouse == MOUSER)
 	{
-		mlx_mouse_get_pos(m->win_id, &m->lmousex, &m->lmousey);
-		//mlx_mouse_get_pos(m->id, m->win_id, &m->lmousex, &m->lmousey);
-		if (m->marginy - (m->lmousey - m->mousey) * 2 != m->marginy)
-			m->marginy += (m->lmousey - m->mousey) * 2;
-		if (m->marginx - (m->lmousex - m->mousex) * 2 != m->marginx)
-			m->marginx += (m->lmousex - m->mousex) * 2;
+		if (m->marginy - (m->lmousey - m->mousey) != m->marginy)
+			m->marginy -= (m->lmousey - m->mousey) * 1.3;
+		if (m->marginx - (m->lmousex - m->mousex) != m->marginx)
+			m->marginx -= (m->lmousex - m->mousex) * 1.3;
+		//mlx_mouse_get_pos(m->win_id, &m->lmousex, &m->lmousey);
+		mlx_mouse_get_pos(m->id, m->win_id, &m->lmousex, &m->lmousey); 
 	}
 	mlx_clear_window(m->id, m->win_id);
 	ft_memset(m->data, 0x00000000, m->size_img * m->winy);
