@@ -19,7 +19,7 @@ UNIX	= -lbsd -lmlx -lXext -lX11
 RM		= rm -rf
 
 .c.o	:
-			$(CC) $(FLAGS) $(MLX) $< -o ${<:.c=.o}
+			$(CC) $(FLAGS) libmlx.a $(MLX) $< -o ${<:.c=.o}
 
 all 	:	$(NAME)
 
