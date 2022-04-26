@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:43:48 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/26 19:27:59 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/26 20:38:36 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "./libft/get_next_line.h"
 # define NAMEAUT "Projet fdf 42 Mulhouse"
 
-/* // KEYBOARD MLX UNIX DEFINE
+// KEYBOARD MLX UNIX DEFINE
 # define UP 119 // w
 # define DOWN 115 // s
 # define LEFT 97 // a
@@ -44,10 +44,11 @@
 # define ZMM 104 // h
 # define ANGLEP 117 // u
 # define ANGLEM 106 // j
-# define ENTER 65293 */
+# define PARA 120
+# define ENTER 65293
 
 // KEYBOARD MLX MACOS DEFINE
-# define UP 13 // w
+/* # define UP 13 // w
 # define DOWN 1 // s
 # define LEFT 0 // a
 # define RIGHT 2 // d
@@ -68,7 +69,7 @@
 # define ANGLEP 32 // u
 # define ANGLEM 38 // j
 # define PARA 35 // p
-# define ENTER 36
+# define ENTER 36 */
 
 // MOUSE MLX UNIX DEFINE
 # define MOUSEL 1

@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 15:33:05 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/26 19:23:49 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/26 23:32:39 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,14 @@ void	matrix_draw(t_global *m)
 				m->line->x1 = (m->m_sum[y][x + 1]->x
 						+ -1 * m->errm + m->marginx) / 2;
 				m->line->y1 = (m->m_sum[y][x + 1]->y) / 2;
-				m->line->color = m->matrix[y][x]->color;
+				if (m->matrix[y][x]->z < m->matrix[y][x + 1]->z)
+					m->line->color = m->matrix[y][x + 1]->color;
+				else
+					m->line->color = m->matrix[y][x]->color;
 				draw_line(m);
 			}
-			matrix_draw_next(y, x, m);
+			if (y < m->sizey - 1)
+				matrix_draw_next(x, y, m);
 		}
 	}
 	free_matrix(m);
@@ -90,15 +94,15 @@ void	matrix_draw(t_global *m)
 
 void	matrix_draw_next(int x, int y, t_global *m)
 {
-	if (y < m->sizey - 1)
-	{
-		m->line->x = (m->m_sum[y][x]->x + -1
-				* m->errm + m->marginx) / 2;
-		m->line->y = (m->m_sum[y][x]->y) / 2;
-		m->line->x1 = (m->m_sum[y + 1][x]->x
-				+ -1 * m->errm + m->marginx) / 2;
-		m->line->y1 = (m->m_sum[y + 1][x]->y) / 2;
+	m->line->x = (m->m_sum[y][x]->x
+			+ -1 * m->errm + m->marginx) / 2;
+	m->line->y = (m->m_sum[y][x]->y) / 2;
+	m->line->x1 = (m->m_sum[y + 1][x]->x
+			+ -1 * m->errm + m->marginx) / 2;
+	m->line->y1 = (m->m_sum[y + 1][x]->y) / 2;
+	if (m->matrix[y+1][x]->z > m->matrix[y][x]->z)
+		m->line->color = m->matrix[y + 1][x]->color;
+	else
 		m->line->color = m->matrix[y][x]->color;
-		draw_line(m);
-	}
+	draw_line(m);
 }

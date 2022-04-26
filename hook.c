@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 23:18:30 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/26 19:29:28 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/26 20:37:30 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,14 @@ int	mouse_press(int mouse, int x, int y, t_global *m)
 	if (mouse == MOUSEL && m->lmouse == 0)
 	{
 		m->lmouse = MOUSEL;
-		mlx_mouse_get_pos(m->win_id, &m->lmousex, &m->lmousey);
+		//mlx_mouse_get_pos(m->win_id, &m->lmousex, &m->lmousey);
+		mlx_mouse_get_pos(m->id, m->win_id, &m->lmousex, &m->lmousey);
 	}
 	if (mouse == MOUSER && m->lmouse == 0)
 	{
 		m->lmouse = MOUSER;
-		mlx_mouse_get_pos(m->win_id, &m->lmousex, &m->lmousey);
+		//mlx_mouse_get_pos(m->win_id, &m->lmousex, &m->lmousey);
+		mlx_mouse_get_pos(m->id, m->win_id, &m->lmousex, &m->lmousey);
 	}
 	if (mouse == MOUSEUP && m->zoom < 2)
 		m->zoom += 0.01;

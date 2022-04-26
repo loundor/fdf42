@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 15:07:24 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/26 17:46:44 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/26 20:39:03 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	info(t_global *m)
 {
-	mlx_mouse_get_pos(m->win_id, &m->mousex, &m->mousey);
+	//mlx_mouse_get_pos(m->win_id, &m->mousex, &m->mousey);
+	mlx_mouse_get_pos(m->id, m->win_id, &m->mousex, &m->mousey);
 	mlx_string_put(m->id, m->win_id, 0, 50, 0xFFFFFF, "Mouse X:");
 	mlx_string_put(m->id, m->win_id, 60, 50, 0xFFFFFF, ft_itoa(m->mousex));
 	mlx_string_put(m->id, m->win_id, 100, 50, 0xFFFFFF, "Mouse Y:");
