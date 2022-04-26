@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 23:18:30 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/25 23:16:14 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/26 14:33:55 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ int	mouse_press(int mouse, int x, int y, t_global *m)
 {
 	if (mouse == MOUSEL && m->lmouse == 0)
 	{
-			m->lmouse = MOUSEL;
-			//mlx_mouse_get_pos(m->win_id, &m->lmousex, &m->lmousey);
-			mlx_mouse_get_pos(m->id, m->win_id, &m->lmousex, &m->lmousey);
+		m->lmouse = MOUSEL;
+		mlx_mouse_get_pos(m->win_id, &m->lmousex, &m->lmousey);
+		//mlx_mouse_get_pos(m->id, m->win_id, &m->lmousex, &m->lmousey);
 	}
 	if (mouse == MOUSER && m->lmouse == 0)
 	{
-			m->lmouse = MOUSER;
-			//mlx_mouse_get_pos(m->win_id, &m->lmousex, &m->lmousey);
-			mlx_mouse_get_pos(m->id, m->win_id, &m->lmousex, &m->lmousey);
+		m->lmouse = MOUSER;
+		mlx_mouse_get_pos(m->win_id, &m->lmousex, &m->lmousey);
+		//mlx_mouse_get_pos(m->id, m->win_id, &m->lmousex, &m->lmousey);
 	}
 	if (mouse == MOUSEUP && m->zoom < 2)
 		m->zoom += 0.01;
@@ -45,7 +45,6 @@ int	mouse_press(int mouse, int x, int y, t_global *m)
 
 int	mouse_hook(int mouse, int x, int y, t_global *m)
 {
-
 	refresh_all(m);
 	return (0);
 }
@@ -73,8 +72,6 @@ int	key_hook(int key, t_global *m)
 		m->radx -= 0.017;
 	if (key == XP)
 		m->rady += 0.017;
-	if (key == XM)
-		m->rady -= 0.017;
 	key_hook2(key, m);
 	refresh_all(m);
 	return (0);
@@ -82,6 +79,8 @@ int	key_hook(int key, t_global *m)
 
 void	key_hook2(int key, t_global *m)
 {
+	if (key == XM)
+		m->rady -= 0.017;
 	if (key == ZP)
 		m->radz += 0.017;
 	if (key == ZM)

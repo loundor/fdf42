@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:43:48 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/25 23:15:39 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/26 15:06:46 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "./libft/get_next_line.h"
 # define NAMEAUT "Projet fdf 42 Mulhouse"
 
-// KEYBOARD MLX UNIX DEFINE
+/* // KEYBOARD MLX UNIX DEFINE
 # define UP 119 // w
 # define DOWN 115 // s
 # define LEFT 97 // a
@@ -44,10 +44,10 @@
 # define ZMM 104 // h
 # define ANGLEP 117 // u
 # define ANGLEM 106 // j
-# define ENTER 65293
+# define ENTER 65293 */
 
 // KEYBOARD MLX MACOS DEFINE
-/* # define UP 13 // w
+# define UP 13 // w
 # define DOWN 1 // s
 # define LEFT 0 // a
 # define RIGHT 2 // d
@@ -67,7 +67,8 @@
 # define ZMM 4 // h
 # define ANGLEP 32 // u
 # define ANGLEM 38 // j
-# define ENTER 36 */
+# define PARA 35 // p
+# define ENTER 36
 
 // MOUSE MLX UNIX DEFINE
 # define MOUSEL 1
@@ -150,6 +151,9 @@ t_matrix	***matrix_sum(t_global *m);
 void		matrix_draw(t_global *m);
 void		reset_param(t_global *m);
 void		color_by_z(int z, unsigned char *color);
+void		color_by_z_2(int z, unsigned char *color);
+void		color_by_z_3(int z, unsigned char *color);
+void		color_by_z_4(int z, unsigned char *color);
 int			ft_htod(char h);
 void		convert_htoi(char *hex, unsigned char *color);
 
@@ -158,6 +162,7 @@ void		draw_line(t_global *m);
 void		draw_line_b(t_global *m);
 void		draw_line_s(t_global *m);
 void		free_matrix(t_global *m);
+void		do_paralele(char *data);
 
 // ROTATION AND ADJUST
 void		x_rotate(int *xy, int *z, t_global *m);

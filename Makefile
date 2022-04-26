@@ -6,7 +6,12 @@ SRCS	=	main.c \
 			draw.c \
 			hook.c \
 			rotate.c \
-			map.c
+			map.c \
+			free.c \
+			info.c \
+			parssing.c \
+			utils.c \
+			color.c
 OBJS	= $(addprefix ./, ${SRCS:.c=.o})
 HEADER	= fdf.h
 MLX		= -Lmlx -lmlx -framework OpenGL -framework AppKit
