@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 15:33:05 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/26 15:12:49 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/26 19:23:49 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,17 @@ t_matrix	***matrix_sum(t_global *m)
 				* m->scale + (m->marginy);
 		}
 	}
+	matrix_sum_next(m, map);
+	return (map);
+}
+
+void	matrix_sum_next(t_global *m, t_matrix ***map)
+{
+	int	y;
+	int	x;
+
 	y = -1;
+	x = -1;
 	while (++y < m->sizey)
 	{
 		x = -1;
@@ -48,7 +58,6 @@ t_matrix	***matrix_sum(t_global *m)
 				m->errm = map[y][x]->x;
 		}
 	}
-	return (map);
 }
 
 void	matrix_draw(t_global *m)
@@ -73,18 +82,23 @@ void	matrix_draw(t_global *m)
 				m->line->color = m->matrix[y][x]->color;
 				draw_line(m);
 			}
-			if (y < m->sizey - 1)
-			{
-				m->line->x = (m->m_sum[y][x]->x + -1
-						* m->errm + m->marginx) / 2;
-				m->line->y = (m->m_sum[y][x]->y) / 2;
-				m->line->x1 = (m->m_sum[y + 1][x]->x
-						+ -1 * m->errm + m->marginx) / 2;
-				m->line->y1 = (m->m_sum[y + 1][x]->y) / 2;
-				m->line->color = m->matrix[y][x]->color;
-				draw_line(m);
-			}
+			matrix_draw_next(y, x, m);
 		}
 	}
 	free_matrix(m);
+}
+
+void	matrix_draw_next(int x, int y, t_global *m)
+{
+	if (y < m->sizey - 1)
+	{
+		m->line->x = (m->m_sum[y][x]->x + -1
+				* m->errm + m->marginx) / 2;
+		m->line->y = (m->m_sum[y][x]->y) / 2;
+		m->line->x1 = (m->m_sum[y + 1][x]->x
+				+ -1 * m->errm + m->marginx) / 2;
+		m->line->y1 = (m->m_sum[y + 1][x]->y) / 2;
+		m->line->color = m->matrix[y][x]->color;
+		draw_line(m);
+	}
 }

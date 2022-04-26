@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 23:18:30 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/26 14:33:55 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/26 19:29:28 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,11 @@ int	mouse_press(int mouse, int x, int y, t_global *m)
 	{
 		m->lmouse = MOUSEL;
 		mlx_mouse_get_pos(m->win_id, &m->lmousex, &m->lmousey);
-		//mlx_mouse_get_pos(m->id, m->win_id, &m->lmousex, &m->lmousey);
 	}
 	if (mouse == MOUSER && m->lmouse == 0)
 	{
 		m->lmouse = MOUSER;
 		mlx_mouse_get_pos(m->win_id, &m->lmousex, &m->lmousey);
-		//mlx_mouse_get_pos(m->id, m->win_id, &m->lmousex, &m->lmousey);
 	}
 	if (mouse == MOUSEUP && m->zoom < 2)
 		m->zoom += 0.01;
@@ -52,8 +50,7 @@ int	mouse_hook(int mouse, int x, int y, t_global *m)
 int	key_hook(int key, t_global *m)
 {
 	if (key == ESC)
-		exit(0);
-		//mlx_loop_end(m->id);
+		free_all(m);
 	if (key == LEFT)
 		m->marginx -= 10;
 	if (key == RIGHT)
@@ -89,6 +86,8 @@ void	key_hook2(int key, t_global *m)
 		m->zzoom -= 1;
 	if (key == ZMM)
 		m->zzoom += 1;
+	if (key == PARA)
+		m->zoom = m->zoom * -1;
 	if (key == SPACE)
 		reset_param(m);
 }

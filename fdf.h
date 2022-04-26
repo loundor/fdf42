@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:43:48 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/26 15:06:46 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/26 19:27:59 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ typedef struct s_global
 	int			bpp;
 	int			endian;
 	int			size_img;
-	void		*info;
 	int			winx;
 	int			winy;
 	t_matrix	***matrix;
@@ -156,6 +155,7 @@ void		color_by_z_3(int z, unsigned char *color);
 void		color_by_z_4(int z, unsigned char *color);
 int			ft_htod(char h);
 void		convert_htoi(char *hex, unsigned char *color);
+void		hook_config(t_global *m);
 
 // DRAW FUNCTION
 void		draw_line(t_global *m);
@@ -182,4 +182,8 @@ int			refresh_all(t_global *m);
 int			info(t_global *m);
 void		default_param(t_global *m);
 void		free_all(t_global *m);
+int			exit_prg(t_global *m);
+void		map_test_next(int *size, int fd, char *file);
+void		matrix_sum_next(t_global *m, t_matrix ***map);
+void		matrix_draw_next(int x, int y, t_global *m);
 #endif

@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:53:29 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/26 15:14:13 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/26 18:49:44 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	main(int argc, char **argv)
 	t_global	m;
 	int			*size;
 
-	if (argc < 2)
+	if (argc != 2)
 	{
-		printf("No arguments!");
+		printf("No arguments or to few arguments!");
 		exit (0);
 	}
 	size = map_test(argv[1]);
@@ -31,14 +31,20 @@ int	main(int argc, char **argv)
 	m.line = malloc(sizeof(t_draw) * 1);
 	m.m_sum = matrix_sum(&m);
 	matrix_draw(&m);
-	mlx_mouse_hook(m.win_id, mouse_hook, &m);
-	mlx_key_hook(m.win_id, key_hook, &m);
-	mlx_hook(m.win_id, 4, 1 << 2, mouse_press, &m);
-	mlx_hook(m.win_id, 5, 1 << 3, mouse_release, &m);
-	mlx_loop_hook(m.id, refresh_all, &m);
+	hook_config(&m);
 	mlx_put_image_to_window(m.id, m.win_id, m.img, 0, 0);
 	mlx_loop(m.id);
 	return (0);
+}
+
+void	hook_config(t_global *m)
+{
+	mlx_mouse_hook(m->win_id, mouse_hook, m);
+	mlx_key_hook(m->win_id, key_hook, m);
+	mlx_hook(m->win_id, 4, 1 << 2, mouse_press, m);
+	mlx_hook(m->win_id, 5, 1 << 3, mouse_release, m);
+	mlx_hook(m->win_id, 17, 0, exit_prg, m);
+	mlx_loop_hook(m->id, refresh_all, m);
 }
 
 void	default_param(t_global *m)
@@ -59,13 +65,12 @@ void	default_param(t_global *m)
 	m->lmousey = 0;
 	m->view = 1;
 	m->zoom = 1;
-	m->zzoom = 0 - m->scale;
+	m->zzoom = m->scale / -10 + -1;
 	m->errm = 0;
 	m->win_id = mlx_new_window(m->id, m->winx, m->winy, NAMEAUT);
 	m->img = mlx_new_image(m->id, m->winx, m->winy);
 	m->data = mlx_get_data_addr(m->img, &m->bpp,
 			&m->size_img, &m->endian);
-	m->info = mlx_new_image(m->id, 200, 600);
 }
 
 void	reset_param(t_global *m)
@@ -80,6 +85,6 @@ void	reset_param(t_global *m)
 	m->radiso = M_PI / 6;
 	m->view = 1;
 	m->zoom = 1;
-	m->zzoom = -5;
+	m->zzoom = m->scale / -10 + -1;
 	m->errm = 0;
 }

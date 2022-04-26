@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 23:22:22 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/20 11:23:34 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/26 19:12:26 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@ int	*map_test(char *file)
 {
 	int		fd;
 	int		*size;
-	int		i;
-	char	*line;
-	char	**split;
 
 	size = malloc(sizeof(int) * 2);
 	if (!size)
@@ -29,17 +26,26 @@ int	*map_test(char *file)
 		printf("Your file '%s' doesn't exist!", file);
 		exit(0);
 	}
-	line = get_next_line(fd);
 	size[0] = 0;
 	size[1] = 0;
+	map_test_next(size, fd, file);
+	return (size);
+}
+
+void	map_test_next(int *size, int fd, char *file)
+{
+	int		i;
+	char	**split;
+	char	*line;
+
+	i = 0;
+	line = get_next_line(fd);
 	while (line)
 	{
 		size[1]++;
-		i = 0;
 		split = ft_split(line, ' ');
 		while (split[i])
 			i++;
-		free(line);
 		if (size[0] != 0 && size[0] != i)
 		{
 			close(fd);
@@ -47,7 +53,10 @@ int	*map_test(char *file)
 			exit(0);
 		}
 		size[0] = i;
+		while (i > 0)
+			free(split[i--]);
+		free(split);
+		free(line);
 		line = get_next_line(fd);
 	}
-	return (size);
 }

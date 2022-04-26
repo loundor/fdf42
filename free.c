@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 15:09:55 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/26 15:10:22 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/26 17:49:04 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	free_all(t_global *m)
 	}
 	free(m->matrix);
 	mlx_destroy_image(m->id, m->img);
-	mlx_destroy_image(m->id, m->info);
 	mlx_destroy_window(m->id, m->win_id);
-	//mlx_destroy_display(m->id);
+	exit(0);
 }
