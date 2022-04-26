@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:53:29 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/26 22:49:17 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/27 00:15:42 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	default_param(t_global *m)
 	m->winx = 1280;
 	m->winy = 1024;
 	m->marginx = 200;
-	m->marginy = 100;
+	m->marginy = 500;
 	m->scale = sqrt((pow(m->winx, 2)
 				+ pow(m->winy, 2))) / m->sizex;
 	m->radx = M_PI / 6;
@@ -64,7 +64,7 @@ void	default_param(t_global *m)
 	m->lmousex = 0;
 	m->lmousey = 0;
 	m->view = 1;
-	m->zoom = 1;
+	m->zoom = 1.4;
 	m->zzoom = m->scale / -10 + -1;
 	m->errm = 0;
 	m->win_id = mlx_new_window(m->id, m->winx, m->winy, NAMEAUT);
@@ -76,15 +76,15 @@ void	default_param(t_global *m)
 void	reset_param(t_global *m)
 {
 	m->marginx = 200;
-	m->marginy = 100;
-	m->scale = sqrt((pow(m->winx - m->marginx, 2)
+	m->marginy = 500;
+	m->scale = sqrt((pow(m->winx, 2)
 				+ pow(m->winy, 2))) / m->sizex;
 	m->radx = M_PI / 6;
 	m->rady = M_PI / 6;
 	m->radz = M_PI / 6;
 	m->radiso = M_PI / 6;
 	m->view = 1;
-	m->zoom = 1;
+	m->zoom = 1.4;
 	m->zzoom = m->scale / -10 + -1;
 	m->errm = 0;
 }
