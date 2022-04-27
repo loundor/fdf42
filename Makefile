@@ -1,36 +1,58 @@
 NAME	= fdf
+LIBFT	= libft.a
+MLXGL	= libmlx.a
 CC		= gcc
 FLAGS	= -Wall -Wextra -Werror
 SRCS	=	main.c \
-			matrix.c \
-			draw.c \
-			hook.c \
-			rotate.c \
-			map.c \
 			free.c \
 			info.c \
 			parssing.c \
 			utils.c \
-			color.c
+			draw.c \
+			color.c \
+			matrix.c \
+			hook.c \
+			map.c \
+			rotate.c
 OBJS	= $(addprefix ./, ${SRCS:.c=.o})
-HEADER	= fdf.h
-MLX		= -Lmlx -lmlx -framework OpenGL -framework AppKit
-UNIX	= -lbsd -lmlx -lXext -lX11
-RM		= rm -rf
+
+HEADER	= -I./ -I./libft -I./minilibx_opengl_20191021
+MLX		= -lmlx -framework OpenGL -framework AppKit
+#UNIX	= -lbsd -lmlx -lXext -lX11
+RM		= @rm -rf
 
 .c.o	:
-			$(CC) $(FLAGS) libmlx.a $(MLX) $< -o ${<:.c=.o}
+			@$(CC) $(FLAGS) -c $(HEADER) $< $ -o ${<:.c=.o}
 
 all 	:	$(NAME)
 
-$(NAME) :	$(OBJS)
-			$(CC) $(MLX) -I./ $(OBJS) -o $@
+$(NAME) :	$(LIBFT) $(MLXGL) $(OBJS)
+			@echo "Compiling FDF. ⚙️"
+			@$(CC) $(OBJS) $(LIBFT) $(MLXGL) $(MLX) -o $@
+			@echo "Finish... 🕶"
+
+$(LIBFT):
+			@echo "Make of libft...🔥"
+			@make -C ./libft
+			@mv ./libft/libft.a ./
+
+$(MLXGL):
+			@echo "Make of minilibx OpenGL...🔥"
+			@make -C ./minilibx_opengl_20191021
+			@mv ./minilibx_opengl_20191021/libmlx.a ./
 
 clean	:
-			$(RM) $(OBJS)
+			@echo "Cleaning object... 🗑"
+			@$(RM) $(OBJS)
+			@echo "Cleaning libft...🗑"
+			@make -C ./libft clean
+			@echo "Cleaning MinilibX OpenGL...🗑"
+			@make -C ./minilibx_opengl_20191021 clean
 
 fclean	:	clean
-			$(RM) $(NAME)
+			@$(RM) $(NAME)
+			@make -C ./libft fclean
+			@echo "Full clean finish... 🧹"
 
 re		:	fclean all
 

@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:53:29 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/27 00:15:42 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/27 16:19:50 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		printf("No arguments or to few arguments!");
+		write(1, "No arguments or to few arguments!", 34);
 		exit (0);
 	}
 	size = map_test(argv[1]);
@@ -50,9 +50,9 @@ void	hook_config(t_global *m)
 void	default_param(t_global *m)
 {
 	m->id = mlx_init();
-	m->winx = 1280;
-	m->winy = 1024;
-	m->marginx = 200;
+	m->winx = 1600;
+	m->winy = 1200;
+	m->marginx = 100;
 	m->marginy = 500;
 	m->scale = sqrt((pow(m->winx, 2)
 				+ pow(m->winy, 2))) / m->sizex;
@@ -64,7 +64,7 @@ void	default_param(t_global *m)
 	m->lmousex = 0;
 	m->lmousey = 0;
 	m->view = 1;
-	m->zoom = 1.4;
+	m->zoom = 1.15;
 	m->zzoom = m->scale / -10 + -1;
 	m->errm = 0;
 	m->win_id = mlx_new_window(m->id, m->winx, m->winy, NAMEAUT);
@@ -75,7 +75,7 @@ void	default_param(t_global *m)
 
 void	reset_param(t_global *m)
 {
-	m->marginx = 200;
+	m->marginx = 100;
 	m->marginy = 500;
 	m->scale = sqrt((pow(m->winx, 2)
 				+ pow(m->winy, 2))) / m->sizex;
@@ -84,7 +84,7 @@ void	reset_param(t_global *m)
 	m->radz = M_PI / 6;
 	m->radiso = M_PI / 6;
 	m->view = 1;
-	m->zoom = 1.4;
+	m->zoom = 1.15;
 	m->zzoom = m->scale / -10 + -1;
 	m->errm = 0;
 }

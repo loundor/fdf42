@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 15:33:05 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/26 23:32:39 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/27 12:12:24 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,38 +71,45 @@ void	matrix_draw(t_global *m)
 		x = -1;
 		while (++x < m->sizex)
 		{
-			if (x < m->sizex - 1)
-			{
-				m->line->x = (m->m_sum[y][x]->x
-						+ -1 * m->errm + m->marginx) / 2;
-				m->line->y = (m->m_sum[y][x]->y) / 2;
-				m->line->x1 = (m->m_sum[y][x + 1]->x
-						+ -1 * m->errm + m->marginx) / 2;
-				m->line->y1 = (m->m_sum[y][x + 1]->y) / 2;
-				if (m->matrix[y][x]->z < m->matrix[y][x + 1]->z)
-					m->line->color = m->matrix[y][x + 1]->color;
-				else
-					m->line->color = m->matrix[y][x]->color;
-				draw_line(m);
-			}
-			if (y < m->sizey - 1)
-				matrix_draw_next(x, y, m);
+			matrix_draw_x(x, y, m);
+			matrix_draw_y(x, y, m);
 		}
 	}
 	free_matrix(m);
 }
 
-void	matrix_draw_next(int x, int y, t_global *m)
+void	matrix_draw_x(int x, int y, t_global *m)
 {
-	m->line->x = (m->m_sum[y][x]->x
-			+ -1 * m->errm + m->marginx) / 2;
-	m->line->y = (m->m_sum[y][x]->y) / 2;
-	m->line->x1 = (m->m_sum[y + 1][x]->x
-			+ -1 * m->errm + m->marginx) / 2;
-	m->line->y1 = (m->m_sum[y + 1][x]->y) / 2;
-	if (m->matrix[y+1][x]->z > m->matrix[y][x]->z)
-		m->line->color = m->matrix[y + 1][x]->color;
-	else
-		m->line->color = m->matrix[y][x]->color;
-	draw_line(m);
+	if (x < m->sizex - 1)
+	{
+		m->line->x = (m->m_sum[y][x]->x
+				+ -1 * m->errm + m->marginx) / 2;
+		m->line->y = (m->m_sum[y][x]->y) / 2;
+		m->line->x1 = (m->m_sum[y][x + 1]->x
+				+ -1 * m->errm + m->marginx) / 2;
+		m->line->y1 = (m->m_sum[y][x + 1]->y) / 2;
+		if (m->matrix[y][x]->z < m->matrix[y][x + 1]->z)
+			m->line->color = m->matrix[y][x + 1]->color;
+		else
+			m->line->color = m->matrix[y][x]->color;
+		draw_line(m);
+	}
+}
+
+void	matrix_draw_y(int x, int y, t_global *m)
+{
+	if (y < m->sizey - 1)
+	{
+		m->line->x = (m->m_sum[y][x]->x
+				+ -1 * m->errm + m->marginx) / 2;
+		m->line->y = (m->m_sum[y][x]->y) / 2;
+		m->line->x1 = (m->m_sum[y + 1][x]->x
+				+ -1 * m->errm + m->marginx) / 2;
+		m->line->y1 = (m->m_sum[y + 1][x]->y) / 2;
+		if (m->matrix[y + 1][x]->z > m->matrix[y][x]->z)
+			m->line->color = m->matrix[y + 1][x]->color;
+		else
+			m->line->color = m->matrix[y][x]->color;
+		draw_line(m);
+	}
 }

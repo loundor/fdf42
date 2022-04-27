@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 15:11:45 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/26 15:12:29 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/27 12:35:38 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_matrix	***map_parse(char *file, int *size)
 		free(line);
 		line = get_next_line(fd);
 	}
+	free(line);
 	return (matrix);
 }
 
@@ -56,6 +57,9 @@ void	put_matrix_line(t_matrix **matrix, int y, int count, char **split)
 			convert_htoi(def[1] + 2, matrix[i]->color);
 		else
 			color_by_z(matrix[i]->z, matrix[i]->color);
+		if (def[1])
+			free(def[1]);
+		free(def[0]);
 		free(def);
 	}
 }

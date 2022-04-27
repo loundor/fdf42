@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 23:22:22 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/26 19:12:26 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/27 15:24:59 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,22 @@ int	*map_test(char *file)
 	int		fd;
 	int		*size;
 
-	size = malloc(sizeof(int) * 2);
-	if (!size)
-		exit(0);
 	fd = open(file, O_RDONLY);
 	if (fd < 1)
 	{
-		printf("Your file '%s' doesn't exist!", file);
+		write(1, "Your file doesn't exist!\n", 26);
 		exit(0);
 	}
+	size = malloc(sizeof(int) * 2);
+	if (!size)
+		exit(0);
 	size[0] = 0;
 	size[1] = 0;
-	map_test_next(size, fd, file);
+	map_test_next(size, fd);
 	return (size);
 }
 
-void	map_test_next(int *size, int fd, char *file)
+void	map_test_next(int *size, int fd)
 {
 	int		i;
 	char	**split;
@@ -49,7 +49,7 @@ void	map_test_next(int *size, int fd, char *file)
 		if (size[0] != 0 && size[0] != i)
 		{
 			close(fd);
-			printf("BAD PARSSING MAP on file: %s\n", file);
+			write(1, "BAD PARSSING MAP on file.\n", 27);
 			exit(0);
 		}
 		size[0] = i;

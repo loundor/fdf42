@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 15:08:15 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/26 20:36:47 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/27 15:21:31 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	convert_htoi(char *hex, unsigned char *color)
 
 	count = -1;
 	i = 3;
-	while (++count < ft_strlen(hex))
+	while (++count < (int)ft_strlen(hex))
 	{
 		rgba = 0;
 		rgba += ft_htod(hex[count++]);
@@ -55,8 +55,7 @@ int	refresh_all(t_global *m)
 			m->radx -= (m->lmousey - m->mousey) * 0.002;
 		if (m->rady - (m->lmousex - m->mousex) * 0.002 != m->rady)
 			m->rady -= (m->lmousex - m->mousex) * 0.002;
-		//mlx_mouse_get_pos(m->win_id, &m->lmousex, &m->lmousey);
-		mlx_mouse_get_pos(m->id, m->win_id, &m->lmousex, &m->lmousey);
+		mlx_mouse_get_pos(m->win_id, &m->lmousex, &m->lmousey);
 	}
 	if (m->lmouse == MOUSER && m->lmousex > 0 && m->lmousey > 0
 		&& m->lmousex < m->winx && m->lmousey < m->winy)
@@ -65,8 +64,7 @@ int	refresh_all(t_global *m)
 			m->marginy -= (m->lmousey - m->mousey) * 2;
 		if (m->marginx - (m->lmousex - m->mousex) != m->marginx)
 			m->marginx -= (m->lmousex - m->mousex) * 2;
-		//mlx_mouse_get_pos(m->win_id, &m->lmousex, &m->lmousey);
-		mlx_mouse_get_pos(m->id, m->win_id, &m->lmousex, &m->lmousey);
+		mlx_mouse_get_pos(m->win_id, &m->lmousex, &m->lmousey);
 	}
 	mlx_clear_window(m->id, m->win_id);
 	ft_memset(m->data, 0x00000000, m->size_img * m->winy);

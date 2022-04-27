@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:43:48 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/26 20:38:36 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/27 15:25:11 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define NAMEAUT "Projet fdf 42 Mulhouse"
 
 // KEYBOARD MLX UNIX DEFINE
-# define UP 119 // w
+/* # define UP 119 // w
 # define DOWN 115 // s
 # define LEFT 97 // a
 # define RIGHT 100 // d
@@ -45,10 +45,10 @@
 # define ANGLEP 117 // u
 # define ANGLEM 106 // j
 # define PARA 120
-# define ENTER 65293
+# define ENTER 65293 */
 
 // KEYBOARD MLX MACOS DEFINE
-/* # define UP 13 // w
+# define UP 13 // w
 # define DOWN 1 // s
 # define LEFT 0 // a
 # define RIGHT 2 // d
@@ -69,7 +69,7 @@
 # define ANGLEP 32 // u
 # define ANGLEM 38 // j
 # define PARA 35 // p
-# define ENTER 36 */
+# define ENTER 36
 
 // MOUSE MLX UNIX DEFINE
 # define MOUSEL 1
@@ -184,7 +184,8 @@ int			info(t_global *m);
 void		default_param(t_global *m);
 void		free_all(t_global *m);
 int			exit_prg(t_global *m);
-void		map_test_next(int *size, int fd, char *file);
+void		map_test_next(int *size, int fd);
 void		matrix_sum_next(t_global *m, t_matrix ***map);
-void		matrix_draw_next(int x, int y, t_global *m);
+void		matrix_draw_y(int x, int y, t_global *m);
+void		matrix_draw_x(int x, int y, t_global *m);
 #endif

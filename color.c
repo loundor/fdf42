@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 14:46:34 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/26 23:34:10 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/27 15:22:15 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void	color_by_z_3(int z, unsigned char *color)
 
 void	color_by_z_4(int z, unsigned char *color)
 {
+	(void)z;
 	color[0] = 0;
 	color[1] = 0;
 	color[2] = 32;

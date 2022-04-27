@@ -26,10 +26,10 @@ HEADER =	./libft.h get_next_line.h
 all		: ${NAME}
 
 clean	:
-			rm -f ${OBJS} ${BNS}
+			@rm -f ${OBJS} ${BNS}
 
 fclean	:	clean
-			rm -f ${NAME}
+			@rm -f ${NAME}
 
 re		:	fclean all
 
