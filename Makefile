@@ -33,24 +33,24 @@ $(NAME) :	$(LIBFT) $(MLXGL) $(OBJS)
 
 $(LIBFT):
 			@echo "Make of libft...🔥"
-			@make -C ./libft
+			@make -s -C ./libft
 			@mv ./libft/libft.a ./
 
 $(MLXGL):
 			@echo "Make of minilibx OpenGL...🔥"
-			@make -C ./minilibx_opengl_20191021
+			@make -s -C ./minilibx_opengl_20191021
 			@mv ./minilibx_opengl_20191021/libmlx.a ./
 
 clean	:
 			@echo "Cleaning object... 🗑"
 			@$(RM) $(OBJS)
 			@echo "Cleaning libft...🗑"
-			@make -C ./libft clean
+			@make -s -C ./libft clean
 			@echo "Cleaning MinilibX OpenGL...🗑"
-			@make -C ./minilibx_opengl_20191021 clean
+			@make -s -C ./minilibx_opengl_20191021 clean
 
 fclean	:	clean
-			@$(RM) $(NAME)
+			@$(RM) $(NAME) $(LIBFT) $(MLXGL) 
 			@make -C ./libft fclean
 			@echo "Full clean finish... 🧹"
 
