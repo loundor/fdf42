@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:53:29 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/27 16:19:50 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/30 10:32:18 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	hook_config(t_global *m)
 void	default_param(t_global *m)
 {
 	m->id = mlx_init();
-	m->winx = 1600;
-	m->winy = 1200;
+	m->winx = 3440;
+	m->winy = 1440;
 	m->marginx = 100;
 	m->marginy = 500;
 	m->scale = sqrt((pow(m->winx, 2)

@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 23:22:22 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/27 15:24:59 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/30 10:08:27 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ void	map_test_next(int *size, int fd)
 	char	**split;
 	char	*line;
 
-	i = 0;
 	line = get_next_line(fd);
 	while (line)
 	{
+		i = 0;
 		size[1]++;
 		split = ft_split(line, ' ');
 		while (split[i])
@@ -53,8 +53,8 @@ void	map_test_next(int *size, int fd)
 			exit(0);
 		}
 		size[0] = i;
-		while (i > 0)
-			free(split[i--]);
+		while (--i >= 0)
+			free(split[i]);
 		free(split);
 		free(line);
 		line = get_next_line(fd);
