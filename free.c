@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 15:09:55 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/30 10:27:26 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/30 17:30:23 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	free_matrix(t_global *m)
 		free(m->m_sum[y]);
 	}
 	free(m->m_sum);
+	m->m_sum = NULL;
 }
 
 void	free_all(t_global *m)
@@ -55,4 +56,5 @@ void	free_info(char **citoa)
 	i = 6;
 	while (--i >= 0)
 		free(citoa[i]);
+	citoa = NULL;
 }

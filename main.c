@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 16:53:29 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/30 10:32:18 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/30 17:42:50 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	default_param(t_global *m)
 	m->lmouse = 0;
 	m->lmousex = 0;
 	m->lmousey = 0;
+	m->mousex = 0;
+	m->mousey = 0;
 	m->view = 1;
 	m->zoom = 1.15;
 	m->zzoom = m->scale / -10 + -1;

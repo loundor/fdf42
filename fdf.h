@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:43:48 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/30 10:27:56 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/30 16:05:33 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ typedef struct s_matrix
 	int				x;
 	int				y;
 	int				z;
-	int				z1;
 	unsigned char	color[4];
 }	t_matrix;
 

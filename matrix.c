@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 15:33:05 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/30 09:57:04 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/30 17:47:51 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,12 @@ t_matrix	***matrix_sum(t_global *m)
 		map[y] = malloc(sizeof(t_matrix **) * m->sizex);
 		while (++x < m->sizex)
 		{
-			map[y][x] = malloc(sizeof(t_matrix *) * 1);
-			if (!map)
-				exit(0);
-			map[y][x]->z = m->matrix[y][x]->z * m->zzoom * m->zoom;
+			map[y][x] = malloc(sizeof(t_matrix));
 			map[y][x]->x = m->matrix[y][x]->x * m->zoom
 				* m->scale + (m->marginx / 2);
 			map[y][x]->y = m->matrix[y][x]->y * m->zoom
 				* m->scale + (m->marginy);
+			map[y][x]->z = m->matrix[y][x]->z * m->zzoom * m->zoom;
 		}
 	}
 	matrix_sum_next(m, map);
