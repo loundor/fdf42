@@ -6,7 +6,7 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 23:18:30 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/30 09:21:01 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/30 21:44:27 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,16 @@ void	key_hook2(int key, t_global *m)
 		m->zzoom -= 1;
 	if (key == ZMM)
 		m->zzoom += 1;
-	if (key == PARA)
+	if (key == FACE)
 	{
 		m->radx = M_PI / 24;
 		m->rady = 0;
+		m->radz = 0;
+	}
+	if (key == PARA)
+	{
+		m->rady = M_PI / 2;
+		m->radx = 0;
 		m->radz = 0;
 	}
 	if (key == SPACE)

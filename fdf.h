@@ -6,13 +6,12 @@
 /*   By: stissera <stissera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 18:43:48 by stissera          #+#    #+#             */
-/*   Updated: 2022/04/30 16:05:33 by stissera         ###   ########.fr       */
+/*   Updated: 2022/04/30 21:44:17 by stissera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-//# include "./mlx/mlx.h"
 # include <mlx.h>
 # include <math.h>
 # include <unistd.h>
@@ -44,7 +43,8 @@
 # define ZMM 104 // h
 # define ANGLEP 117 // u
 # define ANGLEM 106 // j
-# define PARA 120
+# define PARA 120 // X
+# define FACE 122 // Z
 # define ENTER 65293
 
 // KEYBOARD MLX MACOS DEFINE
@@ -69,6 +69,7 @@
 # define ANGLEP 32 // u
 # define ANGLEM 38 // j
 # define PARA 35 // p
+# define FACE 36 // A VOIR!
 # define ENTER 36 */
 
 // MOUSE MLX UNIX DEFINE

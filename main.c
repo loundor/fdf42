@@ -50,8 +50,8 @@ void	hook_config(t_global *m)
 void	default_param(t_global *m)
 {
 	m->id = mlx_init();
-	m->winx = 3440;
-	m->winy = 1440;
+	m->winx = 1920;
+	m->winy = 1080;
 	m->marginx = 100;
 	m->marginy = 500;
 	m->scale = sqrt((pow(m->winx, 2)
